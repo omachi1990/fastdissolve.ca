@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- FastDissolve Icon Mark (Transparent / Dark fill on Light) -->
+  <path d="M14 14H38V22H24V27H36V35H24V48H14V14Z" fill="#0F172A"/>
+  <circle cx="44" cy="18" r="4" fill="#DC2626"/>
+  <circle cx="42" cy="31" r="3.5" fill="#DC2626"/>
+  <circle cx="36" cy="44" r="3" fill="#DC2626"/>
+</svg>

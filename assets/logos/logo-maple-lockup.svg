@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 64" width="340" height="64" fill="none">
+  <!-- FastDissolve Canadian Modernist Lockup -->
+  <g transform="translate(0, 4)">
+    <rect width="56" height="56" rx="14" fill="#C5221F"/>
+    <path d="M28 14L30.5 21H36.5L32 25.5L34 32L28 28.5L22 32L24 25.5L19.5 21H25.5L28 14Z" fill="#FFFFFF"/>
+    <line x1="28" y1="28" x2="28" y2="42" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="40" cy="20" r="2" fill="#FFFFFF"/>
+    <circle cx="43" cy="26" r="2" fill="#FFFFFF"/>
+    <circle cx="41" cy="33" r="2" fill="#FFFFFF"/>
+  </g>
+  <text x="74" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Inter', sans-serif" font-size="28" font-weight="900" letter-spacing="-0.04em" fill="#111827">
+    fastdissolve<tspan fill="#C5221F">.ca</tspan>
+  </text>
+</svg>

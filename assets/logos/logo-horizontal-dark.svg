@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" width="320" height="64" fill="none">
+  <!-- FastDissolve Horizontal Lockup (Dark theme) -->
+  <g transform="translate(0, 4)">
+    <rect width="56" height="56" rx="14" fill="#161F30" stroke="rgba(255,255,255,0.12)"/>
+    <path d="M16 16H36V22H24V26H34V32H24V40H16V16Z" fill="#FFFFFF"/>
+    <circle cx="40" cy="19" r="3" fill="#EF4444"/>
+    <circle cx="38" cy="29" r="2.5" fill="#EF4444"/>
+    <circle cx="34" cy="38" r="2" fill="#EF4444"/>
+  </g>
+  <text x="72" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Inter', sans-serif" font-size="28" font-weight="800" letter-spacing="-0.04em" fill="#FFFFFF">
+    fastdissolve<tspan fill="#EF4444">.ca</tspan>
+  </text>
+</svg>
