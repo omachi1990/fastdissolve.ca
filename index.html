@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastDissolve.ca | Close Your Canadian Corporation or LP Online</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/logos/logo-mark-darkbg.svg">
+    <meta name="description" content="Official fast corporate dissolution platform for Canada. Close your Federal or Provincial corporation online in 24 hours. Transparent fees, 100% compliant.">
+    <!-- OpenGraph -->
+    <meta property="og:title" content="FastDissolve.ca | Fast Canadian Corporate Dissolution">
+    <meta property="og:description" content="Close your Canadian corporation or LP online in days, not months. Federal & All 10 Provinces.">
+    <meta property="og:image" content="assets/banners/fastdissolve/minimalist-swiss-1080x1080.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fastdissolve.ca">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Inter & Merriweather for authoritative gov-adjacent look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        canNavy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            600: '#334e68',
+                            700: '#26374A', // Official Canada.ca Wet-Boew Navy
+                            800: '#1b2735',
+                            900: '#101820',
+                        },
+                        canRed: {
+                            50: '#fdf2f2',
+                            100: '#fde8e8',
+                            600: '#D8292F', // Official Canada Flag / Accent Red
+                            700: '#b91c1c',
+                        },
+                        canBlue: {
+                            600: '#005A9C', // Business Registry Trust Blue
+                            700: '#004475',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom subtle animations and registry-style accents */
+        .gov-top-bar {
+            border-bottom: 3px solid #D8292F;
+        }
+        .step-check {
+            transition: all 0.3s ease;
+        }
+        .fade-in {
+            animation: fadeIn 0.35s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen selection:bg-canNavy-700 selection:text-white">
+
+    <!-- Top Official Style Accent Bar -->
+    <div class="bg-canNavy-800 text-slate-200 text-xs py-2 px-4 border-b border-canNavy-700">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-2">
+                <!-- Canadian Maple Leaf SVG icon -->
+                <svg class="w-4 h-4 text-canRed-600 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 1L9.5 6.5L5 5L6.5 10.5L2 12L6.5 14.5L5.5 18L11 17V23H13V17L18.5 18L17.5 14.5L22 12L17.5 10.5L19 5L14.5 6.5L12 1Z"/>
+                </svg>
+                <span class="font-medium tracking-wide">Canadian Corporate Dissolution Platform • Federal & Provincial Coverage</span>
+            </div>
+            <div class="flex items-center space-x-4 text-slate-300">
+                <span class="hidden sm:inline-flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> 256-Bit SSL Encrypted</span>
+                <a href="mailto:support@fastdissolve.ca" class="hover:text-white underline">support@fastdissolve.ca</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-white gov-top-bar sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <button onclick="navigateTo('home')" class="flex items-center space-x-3 text-left group focus:outline-none">
+                <svg class="w-10 h-10 rounded-lg shadow-sm" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="16" fill="#1b2735"/>
+                    <path d="M18 18H40V25H27V29H38V36H27V46H18V18Z" fill="#FFFFFF"/>
+                    <circle cx="45" cy="21.5" r="3.5" fill="#D8292F"/>
+                    <circle cx="43" cy="32.5" r="3" fill="#D8292F"/>
+                    <circle cx="38" cy="43.5" r="2.5" fill="#D8292F"/>
+                </svg>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-heading font-extrabold text-xl tracking-tight text-canNavy-800">fastdissolve<span class="text-canRed-600">.ca</span></span>
+                    </div>
+                    <span class="block text-[11px] text-slate-500 font-medium uppercase tracking-wider">Corporate Registry Filing System</span>
+                </div>
+            </button>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-canNavy-700">
+                <button onclick="navigateToSection('home', 'how-it-works')" class="hover:text-canRed-600 transition-colors">How it works</button>
+                <button onclick="navigateToSection('home', 'pricing')" class="hover:text-canRed-600 transition-colors">Pricing</button>
+                <button onclick="navigateToSection('home', 'faq')" class="hover:text-canRed-600 transition-colors">FAQ</button>
+                <button onclick="navigateTo('about')" id="nav-about" class="hover:text-canRed-600 transition-colors">About Us</button>
+                <button onclick="navigateTo('contact')" id="nav-contact" class="hover:text-canRed-600 transition-colors">Contact Us</button>
+            </nav>
+
+            <!-- Header CTA -->
+            <div class="flex items-center space-x-3">
+                <button onclick="openGetStartedModal()" class="bg-canRed-600 hover:bg-canRed-700 text-white font-semibold text-sm px-5 py-2.5 rounded-md shadow-sm transition-all flex items-center gap-2">
+                    <span>Get Started</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-md text-canNavy-700 hover:bg-slate-100">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-5 space-y-2">
+            <button onclick="navigateToSection('home', 'how-it-works'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded font-medium text-canNavy-700 hover:bg-slate-100">How it works</button>
+            <button onclick="navigateToSection('home', 'pricing'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded font-medium text-canNavy-700 hover:bg-slate-100">Pricing</button>
+            <button onclick="navigateToSection('home', 'faq'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded font-medium text-canNavy-700 hover:bg-slate-100">FAQ</button>
+            <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded font-medium text-canNavy-700 hover:bg-slate-100">About Us</button>
+            <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded font-medium text-canNavy-700 hover:bg-slate-100">Contact Us</button>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: HOMEPAGE (CANADA VERSION)          -->
+    <!-- ========================================== -->
+    <main id="view-home" class="flex-grow fade-in">
+        
+        <!-- HERO SECTION -->
+        <section class="bg-gradient-to-b from-canNavy-700 via-canNavy-800 to-canNavy-900 text-white relative overflow-hidden">
+            <!-- Subtle geometric registry grid overlay -->
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Column: Hero Copy & Direct Action -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center space-x-2 bg-canNavy-600/80 border border-slate-500/40 rounded-full px-3.5 py-1.5 text-xs font-medium text-slate-200">
+                            <span class="w-2 h-2 rounded-full bg-canRed-600 animate-pulse"></span>
+                            <span>Canada Online Corporate Dissolution Portal</span>
+                        </div>
+                        
+                        <h1 class="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-white">
+                            Close Your Canadian Corporation or LP Online
+                        </h1>
+                        
+                        <p class="text-lg sm:text-xl text-slate-200 leading-relaxed font-normal max-w-2xl">
+                            A simple online platform that helps you prepare and electronically submit the paperwork to dissolve your federal or provincial company. Close your business cleanly in just a few guided steps.
+                        </p>
+
+                        <!-- Primary CTA Order Box (Interactive 2-Step Inline Form - Open by default) -->
+                        <div class="pt-2 max-w-xl">
+                            <div class="bg-white text-slate-800 rounded-xl p-5 sm:p-6 shadow-2xl border-t-4 border-canRed-600">
+                                <!-- Step 1: Business Name & Jurisdiction (Federal + 13 Provinces/Territories) - Visible immediately -->
+                                <form id="hero-form-step1" onsubmit="goToHeroStep2(event)" class="space-y-4 fade-in">
+                                    <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                                        <span class="text-xs font-bold uppercase tracking-wider text-canRed-600">Get started in minutes • Step 1 of 2</span>
+                                        <span class="text-xs text-slate-400 font-medium">No account needed</span>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-canNavy-800 mb-1">Business Name *</label>
+                                        <input type="text" id="hero-biz-name" required placeholder="e.g. Northern Lights Consulting Inc." class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none text-sm font-medium text-slate-900">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-canNavy-800 mb-1">Jurisdiction (Federal / 13 Provinces & Territories) *</label>
+                                        <select id="hero-jurisdiction" required class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none bg-white text-sm font-medium text-slate-900">
+                                            <option value="Federal">Federal (Corporations Canada)</option>
+                                            <option value="Alberta">Alberta</option>
+                                            <option value="British Columbia">British Columbia</option>
+                                            <option value="Manitoba">Manitoba</option>
+                                            <option value="New Brunswick">New Brunswick</option>
+                                            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                            <option value="Northwest Territories">Northwest Territories</option>
+                                            <option value="Nova Scotia">Nova Scotia</option>
+                                            <option value="Nunavut">Nunavut</option>
+                                            <option value="Ontario">Ontario</option>
+                                            <option value="Prince Edward Island">Prince Edward Island</option>
+                                            <option value="Quebec">Quebec</option>
+                                            <option value="Saskatchewan">Saskatchewan</option>
+                                            <option value="Yukon">Yukon</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="w-full bg-canRed-600 hover:bg-canRed-700 text-white font-heading font-bold text-base py-3.5 px-6 rounded-lg shadow transition-all flex items-center justify-center gap-2">
+                                        <span>Continue</span>
+                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                    </button>
+                                    <p class="text-[11px] text-center text-slate-500">Takes less than 5 minutes. No account needed to start.</p>
+                                </form>
+
+                                <!-- Step 2: Owner Name & Email Address -->
+                                <form id="hero-form-step2" onsubmit="submitHeroOrder(event)" class="hidden space-y-4 fade-in">
+                                    <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                                        <span class="text-xs font-bold uppercase tracking-wider text-canRed-600">Step 2 of 2 • Contact Details</span>
+                                        <button type="button" onclick="backToHeroStep1()" class="text-xs font-semibold text-canBlue-600 hover:underline">← Back</button>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-canNavy-800 mb-1">Owner / Director Name *</label>
+                                        <input type="text" id="hero-owner-name" required placeholder="Your Full Legal Name" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none text-sm font-medium text-slate-900">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-canNavy-800 mb-1">Email Address *</label>
+                                        <input type="email" id="hero-owner-email" required placeholder="you@company.ca" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none text-sm font-medium text-slate-900">
+                                    </div>
+                                    <button type="submit" class="w-full bg-canRed-600 hover:bg-canRed-700 text-white font-heading font-bold text-base py-3.5 px-6 rounded-lg shadow transition-all flex items-center justify-center gap-2">
+                                        <span>Submit & Review Filing</span>
+                                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                                    </button>
+                                    <p class="text-[11px] text-center text-slate-500">Takes less than 5 minutes. No account needed to start.</p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Professional Image of a Blonde White Woman in a Suit Smiling -->
+                    <div class="lg:col-span-5">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <div class="absolute -inset-2 bg-canRed-600/20 rounded-2xl blur-lg"></div>
+                            <div class="relative bg-canNavy-700 border-2 border-slate-600/60 rounded-xl overflow-hidden shadow-2xl">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" 
+                                    onerror="this.src='https://placehold.co/600x700/26374A/FFFFFF?text=Professional+Executive'"
+                                    alt="Smiling blonde Caucasian businesswoman in a professional suit blazer" 
+                                    class="w-full h-[380px] sm:h-[440px] object-cover object-top"
+                                />
+                                <!-- Floating Status Badge -->
+                                <div class="bg-white/95 backdrop-blur-sm p-4 m-4 rounded-lg shadow-lg border-l-4 border-canRed-600 text-slate-800">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="bg-emerald-100 text-emerald-700 p-2 rounded-full">
+                                                <i data-lucide="file-check-2" class="w-5 h-5"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-xs font-bold uppercase tracking-wider text-canNavy-700">Articles of Dissolution</p>
+                                                <p class="text-xs text-slate-600">Prepared & transmitted electronically</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded border border-emerald-200">Verified</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TRUST BAR -->
+            <div class="bg-canNavy-900/90 border-t border-slate-700/80 py-4 px-4">
+                <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center md:justify-between gap-4 text-xs sm:text-sm font-medium text-slate-200">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-base">📄</span>
+                        <span>Federal & Provincial Registry Coverage</span>
+                    </div>
+                    <span class="hidden md:inline text-slate-600">•</span>
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i>
+                        <span>Secure online checkout</span>
+                    </div>
+                    <span class="hidden md:inline text-slate-600">•</span>
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i>
+                        <span>1-business-day document preparation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1 – A SIMPLER WAY TO CLOSE YOUR BUSINESS -->
+        <section class="py-16 lg:py-24 bg-white border-b border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-canRed-600 bg-canRed-50 px-3 py-1 rounded-full">Why FastDissolve</span>
+                    <h2 class="mt-3 font-heading text-3xl sm:text-4xl font-extrabold text-canNavy-800">
+                        A simpler way to close your business
+                    </h2>
+                    <p class="mt-3 text-lg font-medium text-canBlue-600">
+                        Closing your company is a process. Our online platform makes it a simple one.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border-l-4 border-canNavy-700 rounded-r-xl p-6 sm:p-10 shadow-sm space-y-5 text-slate-700 text-base sm:text-lg leading-relaxed">
+                    <p>
+                        You stopped trading months or even years ago. Yet, the company is still sitting on the government registry racking up annual return reminders and staying on your to-do list week after week.
+                    </p>
+                    <p>
+                        We built our online platform to solve this exact headache. Most founders delay closing not because they don't care, but because scattered government forms, confusing rules, and lack of clear guidance make the process exhausting.
+                    </p>
+                    <p class="font-medium text-canNavy-800">
+                        Our guided system walks you through step-by-step. You enter the basics, our platform generates the correct dissolution forms, and upon your review and approval, we transmit your filing electronically to the registry at your direction. A clean, stress-free closure so you can officially move on to your next project.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2 – HOW IT WORKS -->
+        <section id="how-it-works" class="py-16 lg:py-24 bg-slate-50 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-xs font-bold uppercase tracking-widest text-canNavy-700 bg-canNavy-100 px-3 py-1 rounded-full">Guided Workflow</span>
+                    <h2 class="mt-3 font-heading text-3xl sm:text-4xl font-extrabold text-canNavy-800">
+                        How it works
+                    </h2>
+                    <p class="mt-2 text-lg text-slate-600 font-medium">
+                        Three simple steps. Then you're done.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="bg-white rounded-xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between hover:border-canNavy-600 transition-colors">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="w-12 h-12 rounded-lg bg-canNavy-700 text-white font-heading font-bold text-xl flex items-center justify-center shadow">1</span>
+                                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">~ 2 Minutes</span>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-canNavy-800 mb-3">
+                                Step 1 – Tell us about your business
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                Fill out a short online questionnaire with your business name and basic details. Takes about 2 minutes.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-semibold text-canBlue-600">
+                            <i data-lucide="clipboard-list" class="w-4 h-4 mr-1.5"></i> Simple Online Questionnaire
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white rounded-xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between hover:border-canNavy-600 transition-colors">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="w-12 h-12 rounded-lg bg-canNavy-700 text-white font-heading font-bold text-xl flex items-center justify-center shadow">2</span>
+                                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">1 Business Day</span>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-canNavy-800 mb-3">
+                                Step 2 – Review and filing
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                Our platform prepares your official dissolution application and emails the draft to you. You give it a quick review, and we electronically submit it to the applicable registry using your authorized corporate details.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-semibold text-canBlue-600">
+                            <i data-lucide="send" class="w-4 h-4 mr-1.5"></i> Electronic Registry Filing
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white rounded-xl p-8 border border-slate-200 shadow-sm relative flex flex-col justify-between hover:border-canNavy-600 transition-colors">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="w-12 h-12 rounded-lg bg-canRed-600 text-white font-heading font-bold text-xl flex items-center justify-center shadow">3</span>
+                                <span class="text-xs font-semibold text-emerald-600 uppercase tracking-wider">Official Closure</span>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-canNavy-800 mb-3">
+                                Step 3 – Done
+                            </h3>
+                            <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                We email you as soon as the official Certificate of Dissolution is issued by the registry. You don't need to keep checking government portals. We'll notify you at every step.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center text-xs font-semibold text-emerald-700">
+                            <i data-lucide="award" class="w-4 h-4 mr-1.5"></i> Certificate of Dissolution Issued
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 – WHAT A STRESS-FREE DISSOLUTION LOOKS LIKE -->
+        <section class="py-16 lg:py-24 bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-14">
+                    <span class="text-xs font-bold uppercase tracking-widest text-canRed-600 bg-canRed-50 px-3 py-1 rounded-full">Complete Package</span>
+                    <h2 class="mt-3 font-heading text-3xl sm:text-4xl font-extrabold text-canNavy-800">
+                        What a stress‑free dissolution looks like
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex items-start space-x-4">
+                        <div class="bg-canNavy-700 text-white p-2.5 rounded-lg shrink-0 mt-0.5">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-canNavy-800 text-base mb-1.5">Your dissolution application, prepared for you</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Automatically formatted based on the information you provide to match the exact requirements of your federal or provincial registry.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex items-start space-x-4">
+                        <div class="bg-canNavy-700 text-white p-2.5 rounded-lg shrink-0 mt-0.5">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-canNavy-800 text-base mb-1.5">Electronic filing with the appropriate registry</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Submitted online through official digital channels for Corporations Canada (federal) or your provincial corporate registry.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex items-start space-x-4">
+                        <div class="bg-canNavy-700 text-white p-2.5 rounded-lg shrink-0 mt-0.5">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-canNavy-800 text-base mb-1.5">Pre-submission review</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Basic automated and administrative checks through our platform to catch common errors before they cause government delays.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex items-start space-x-4">
+                        <div class="bg-canNavy-700 text-white p-2.5 rounded-lg shrink-0 mt-0.5">
+                            <i data-lucide="bell-ring" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-canNavy-800 text-base mb-1.5">Step-by-step updates</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Clear email notifications at every stage, when your draft is ready, when it's submitted, and when your dissolution is confirmed.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex items-start space-x-4">
+                        <div class="bg-canNavy-700 text-white p-2.5 rounded-lg shrink-0 mt-0.5">
+                            <i data-lucide="landmark" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-canNavy-800 text-base mb-1.5">Final closure roadmap for CRA</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Simple, guided steps to notify the Canada Revenue Agency (CRA) of your cessation date so your tax accounts are properly closed.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex items-start space-x-4">
+                        <div class="bg-canNavy-700 text-white p-2.5 rounded-lg shrink-0 mt-0.5">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-canNavy-800 text-base mb-1.5">Creditor notification toolkit</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Ready-to-use digital templates and checklists to notify stakeholders as required.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 7 (Spans nicely across bottom) -->
+                    <div class="bg-slate-50 rounded-xl p-6 border border-slate-200 flex items-start space-x-4 md:col-span-2 lg:col-span-3 max-w-2xl mx-auto w-full">
+                        <div class="bg-canRed-600 text-white p-2.5 rounded-lg shrink-0 mt-0.5">
+                            <i data-lucide="file-signature" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-canNavy-800 text-base mb-1.5">Board and shareholder resolution template</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Simple, ready-to-sign resolution documents to formalize your decision to close the company for your corporate records.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 – WHO THIS IS FOR -->
+        <section class="py-16 lg:py-24 bg-canNavy-50 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Content -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-canNavy-700 bg-white px-3 py-1 rounded-full border border-slate-200">Eligibility & Fit</span>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-canNavy-800">
+                            Who this is for
+                        </h2>
+                        <p class="text-lg font-semibold text-canNavy-700">
+                            You're in the right place if:
+                        </p>
+
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3 bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5"></i>
+                                <span class="text-slate-700 font-medium">Your company has stopped trading (or never really started).</span>
+                            </li>
+                            <li class="flex items-start space-x-3 bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5"></i>
+                                <span class="text-slate-700 font-medium">You want to close it without dealing with complex forms.</span>
+                            </li>
+                            <li class="flex items-start space-x-3 bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5"></i>
+                                <span class="text-slate-700 font-medium">You prefer handling administrative tasks online from anywhere.</span>
+                            </li>
+                            <li class="flex items-start space-x-3 bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                                <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600 shrink-0 mt-0.5"></i>
+                                <span class="text-slate-700 font-medium">You want a clear, guided process instead of figuring it out alone.</span>
+                            </li>
+                        </ul>
+
+                        <div class="bg-canNavy-700 text-white p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <p class="text-sm text-slate-200 leading-relaxed">
+                                <strong class="text-white block mb-0.5">Not sure how the standard registry requirements apply to your file?</strong>
+                                Email us. Our support team will walk you through how our platform's readiness checklist works.
+                            </p>
+                            <button onclick="navigateTo('contact')" class="shrink-0 bg-white text-canNavy-800 hover:bg-slate-100 font-semibold text-xs px-4 py-2.5 rounded shadow-sm transition-colors">
+                                Email Support
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Multiple Business Professionals in Formal Attire Smiling -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white p-3 rounded-2xl shadow-lg border border-slate-200">
+                            <img 
+                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" 
+                                onerror="this.src='https://placehold.co/600x700/26374A/FFFFFF?text=Canadian+Business+Founders'"
+                                alt="Group of cheerful business professionals in formal attire smiling together" 
+                                class="w-full h-[420px] object-cover object-center rounded-xl"
+                            />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5 – PRICING -->
+        <section id="pricing" class="py-16 lg:py-24 bg-white border-b border-slate-200">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-canRed-600 bg-canRed-50 px-3 py-1 rounded-full">Clear Fee Structure</span>
+                    <h2 class="mt-3 font-heading text-3xl sm:text-4xl font-extrabold text-canNavy-800">
+                        Simple, transparent pricing.
+                    </h2>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl border-2 border-canNavy-700 shadow-xl overflow-hidden max-w-3xl mx-auto">
+                    <div class="bg-canNavy-700 text-white p-6 sm:p-8 text-center border-b border-canNavy-800">
+                        <p class="text-xs uppercase tracking-widest font-semibold text-slate-300 mb-2">Complete Online Dissolution Package</p>
+                        <div class="flex flex-wrap items-baseline justify-center gap-2">
+                            <span class="font-heading text-4xl sm:text-5xl font-extrabold">$295 CAD</span>
+                            <span class="text-lg text-slate-200 font-medium">+ applicable government registry fee</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 sm:p-10 space-y-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1 rounded-full mt-0.5 shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-slate-700 font-medium">Assisted preparation of your dissolution application based on your submitted details</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1 rounded-full mt-0.5 shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-slate-700 font-medium">Electronic submission handling via official online registry channels</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1 rounded-full mt-0.5 shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-slate-700 font-medium">Pre-submission error checks to reduce the chance of rejection</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <div class="bg-emerald-100 text-emerald-700 p-1 rounded-full mt-0.5 shrink-0">
+                                    <i data-lucide="check" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-slate-700 font-medium">Email confirmation once filed, plus step-by-step status tracking guidance</span>
+                            </li>
+                        </ul>
+
+                        <div class="pt-4 border-t border-slate-200 text-center">
+                            <button onclick="openGetStartedModal()" class="w-full sm:w-auto bg-canRed-600 hover:bg-canRed-700 text-white font-heading font-bold text-base px-10 py-4 rounded-lg shadow-md transition-all inline-flex items-center justify-center gap-2">
+                                <span>Get started in minutes</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </button>
+                            <p class="mt-3 text-xs text-slate-500">Secure online checkout via Stripe • 256-bit SSL encrypted</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6 – TRUSTED BY BUSINESS OWNERS LIKE YOU -->
+        <section class="py-16 lg:py-24 bg-slate-50 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-xs font-bold uppercase tracking-widest text-canNavy-700 bg-canNavy-100 px-3 py-1 rounded-full">Client Feedback</span>
+                    <h2 class="mt-3 font-heading text-3xl sm:text-4xl font-extrabold text-canNavy-800">
+                        Trusted by Business Owners Like You
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-7 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 mb-4">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-700 italic leading-relaxed">
+                                "I'd been putting off closing my Ontario corporation for two years. Their online platform sorted everything out in a week, and the CRA instructions were super clear. Should've done this months ago."
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-heading font-bold text-canNavy-800">Daniel</span>
+                            <span class="text-xs font-semibold bg-slate-100 text-slate-600 px-2.5 py-1 rounded">Ontario</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-7 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 mb-4">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-700 italic leading-relaxed">
+                                "Three partners with three different opinions on closing our LP. The online system gave us a simple checklist, prepared the forms, and made it completely painless."
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-heading font-bold text-canNavy-800">Marc</span>
+                            <span class="text-xs font-semibold bg-slate-100 text-slate-600 px-2.5 py-1 rounded">British Columbia</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-7 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 mb-4">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-700 italic leading-relaxed">
+                                "Handling a dormant family company after an estate transition felt overwhelming. The guided online steps made the whole process manageable."
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="font-heading font-bold text-canNavy-800">Lisa</span>
+                            <span class="text-xs font-semibold bg-slate-100 text-slate-600 px-2.5 py-1 rounded">Ontario</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7 – FAQ -->
+        <section id="faq" class="py-16 lg:py-24 bg-white border-b border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-canRed-600 bg-canRed-50 px-3 py-1 rounded-full">Common Questions</span>
+                    <h2 class="mt-3 font-heading text-3xl sm:text-4xl font-extrabold text-canNavy-800">
+                        Frequently Asked Questions
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Q1 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                        <button onclick="toggleFaq(1)" class="w-full p-5 text-left flex items-center justify-between font-heading font-bold text-canNavy-800 hover:bg-slate-100 transition-colors">
+                            <span>Q1: What do I need to prepare before using your online platform?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-1" class="w-5 h-5 text-canNavy-700 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-1" class="px-5 pb-5 text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3">
+                            You only need basic company details (business name, registered address, director names). Our online questionnaire guides you through the rest step-by-step.
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                        <button onclick="toggleFaq(2)" class="w-full p-5 text-left flex items-center justify-between font-heading font-bold text-canNavy-800 hover:bg-slate-100 transition-colors">
+                            <span>Q2: How long does it take to officially close?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-2" class="w-5 h-5 text-canNavy-700 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-2" class="hidden px-5 pb-5 text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3">
+                            Our platform prepares your draft documents within 1 to 2 business days. Once submitted, official government registry processing typically takes a few weeks depending on your jurisdiction. We ensure your forms are formatted accurately upfront to prevent avoidable delays.
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                        <button onclick="toggleFaq(3)" class="w-full p-5 text-left flex items-center justify-between font-heading font-bold text-canNavy-800 hover:bg-slate-100 transition-colors">
+                            <span>Q3: Do you help with CRA and creditor notifications?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-3" class="w-5 h-5 text-canNavy-700 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-3" class="hidden px-5 pb-5 text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3">
+                            Yes. Our platform provides clear digital checklists and templates so you can easily handle stakeholder and CRA closure notifications without separate logins.
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                        <button onclick="toggleFaq(4)" class="w-full p-5 text-left flex items-center justify-between font-heading font-bold text-canNavy-800 hover:bg-slate-100 transition-colors">
+                            <span>Q4: How do I track my request?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-4" class="w-5 h-5 text-canNavy-700 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-4" class="hidden px-5 pb-5 text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3">
+                            You'll receive automated email updates at every key milestone, along with clear instructions on how to verify your status on the applicable registry.
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                        <button onclick="toggleFaq(5)" class="w-full p-5 text-left flex items-center justify-between font-heading font-bold text-canNavy-800 hover:bg-slate-100 transition-colors">
+                            <span>Q5: What if the registry asks for extra information?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-5" class="w-5 h-5 text-canNavy-700 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-5" class="hidden px-5 pb-5 text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3">
+                            If the corporate registry requires a formatting adjustment or additional administrative details on your dissolution form, our support team is available via email to help you update and resubmit your document package.
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                        <button onclick="toggleFaq(6)" class="w-full p-5 text-left flex items-center justify-between font-heading font-bold text-canNavy-800 hover:bg-slate-100 transition-colors">
+                            <span>Q6: Is payment secure and will I get proof of my filing?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-6" class="w-5 h-5 text-canNavy-700 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-6" class="hidden px-5 pb-5 text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3">
+                            Yes. Payments are processed through a PCI-DSS Level 1 compliant payment processor with 256-bit SSL encryption. You receive an instant email receipt with an order summary, plus official confirmation once your dissolution application has been submitted.
+                        </div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50">
+                        <button onclick="toggleFaq(7)" class="w-full p-5 text-left flex items-center justify-between font-heading font-bold text-canNavy-800 hover:bg-slate-100 transition-colors">
+                            <span>Q7: Do I need to tell the CRA separately that I've stopped trading?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-7" class="w-5 h-5 text-canNavy-700 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-7" class="hidden px-5 pb-5 text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3">
+                            Yes. While the corporate registry processes your legal dissolution, the CRA still requires your exact cessation date to close your tax program accounts and stop expecting future returns.
+                        </div>
+                    </div>
+
+                    <!-- Q8 (Interactive Readiness Checklist) -->
+                    <div class="border-2 border-canNavy-700 rounded-xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq(8)" class="w-full p-5 text-left flex items-center justify-between font-heading font-bold text-canNavy-800 bg-canNavy-50 hover:bg-canNavy-100 transition-colors">
+                            <span>Q8: How do I know if my company is ready to close?</span>
+                            <i data-lucide="chevron-down" id="faq-icon-8" class="w-5 h-5 text-canNavy-700 transition-transform"></i>
+                        </button>
+                        <div id="faq-ans-8" class="p-6 text-slate-700 space-y-4">
+                            <p class="font-semibold text-canNavy-800">Here is a simple checklist (click to tick):</p>
+                            <div class="space-y-2.5">
+                                <label class="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" class="w-5 h-5 text-canNavy-700 rounded border-slate-300 focus:ring-canNavy-700">
+                                    <span>Business activity has completely stopped (no sales or services).</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" class="w-5 h-5 text-canNavy-700 rounded border-slate-300 focus:ring-canNavy-700">
+                                    <span>All debts, bills, and supplier balances are paid off.</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" class="w-5 h-5 text-canNavy-700 rounded border-slate-300 focus:ring-canNavy-700">
+                                    <span>Final tax returns are sorted out.</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" class="w-5 h-5 text-canNavy-700 rounded border-slate-300 focus:ring-canNavy-700">
+                                    <span>Business bank accounts are closed and remaining assets distributed.</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" class="w-5 h-5 text-canNavy-700 rounded border-slate-300 focus:ring-canNavy-700">
+                                    <span>No ongoing legal disputes or lawsuits.</span>
+                                </label>
+                            </div>
+                            <p class="text-sm text-slate-600 pt-2">
+                                If you can tick all these boxes, you're ready to go. Not sure about any? Just <button onclick="navigateTo('contact')" class="text-canRed-600 font-semibold underline">email us</button>, we're happy to help.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CALL TO ACTION -->
+        <section class="py-16 lg:py-24 bg-canNavy-800 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Column: Smiling friendly, stress-free image of shopowner -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-canNavy-700 p-3 rounded-2xl border border-slate-600 shadow-xl">
+                            <img 
+                                src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=800&q=80" 
+                                alt="Smiling friendly, stress-free shopowner" 
+                                class="w-full h-[360px] object-cover rounded-xl"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Final CTA Text -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold leading-tight">
+                            Ready to finally close that company and move on?
+                        </h2>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            No confusing government portals. No guesswork. Just your details, our online platform, and a clean corporate closure.
+                        </p>
+                        <div>
+                            <button onclick="openGetStartedModal()" class="bg-canRed-600 hover:bg-canRed-700 text-white font-heading font-bold text-lg px-8 py-4 rounded-lg shadow-lg transition-all inline-flex items-center gap-2">
+                                <span>Get started for $295 CAD + provincial fee →</span>
+                            </button>
+                            <p class="mt-3 text-sm text-slate-300">
+                                Takes 5 minutes so you can move on and focus on your next project.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: ABOUT US PAGE                      -->
+    <!-- ========================================== -->
+    <main id="view-about" class="hidden flex-grow fade-in">
+        <!-- About Hero -->
+        <section class="bg-canNavy-700 text-white py-16 border-b-4 border-canRed-600">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+                <span class="text-xs font-bold uppercase tracking-widest bg-canNavy-800 px-3 py-1 rounded-full text-slate-200">About FastDissolve.ca</span>
+                <h1 class="font-heading text-3xl sm:text-5xl font-extrabold">
+                    Dissolve Your Business Online in Canada
+                </h1>
+                <p class="text-xl text-slate-200 font-medium">
+                    We built this platform because we've been where you are.
+                </p>
+            </div>
+        </section>
+
+        <!-- About Content -->
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <div class="space-y-5 text-slate-700 text-lg leading-relaxed">
+                    <p>
+                        FastDissolve was created by digital workflow builders and administrative specialists who saw firsthand how much scattered paperwork founders face when trying to wind down an inactive corporation.
+                    </p>
+                    <p>
+                        Every year, thousands of Canadian business owners find themselves in the exact same position: with a dormant company that has stopped trading, sitting on their to-do list for months (or even years). Every time they try to close it, they hit the same administrative wall:
+                    </p>
+
+                    <ul class="space-y-3 bg-slate-50 p-6 rounded-xl border-l-4 border-canRed-600 text-base font-medium text-canNavy-800">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="help-circle" class="w-5 h-5 text-canRed-600 shrink-0 mt-0.5"></i>
+                            <span>Which form is required for a federal vs. provincial dissolution?</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="help-circle" class="w-5 h-5 text-canRed-600 shrink-0 mt-0.5"></i>
+                            <span>What is the proper sequence for notifying the CRA and closing GST/HST accounts?</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="help-circle" class="w-5 h-5 text-canRed-600 shrink-0 mt-0.5"></i>
+                            <span>How do you avoid formatting rejections and ongoing annual return reminders?</span>
+                        </li>
+                    </ul>
+
+                    <p>
+                        Founders spend hours reading through dense government portals and still aren't sure if their forms are formatted properly.
+                    </p>
+                    <p class="font-semibold text-canNavy-800">
+                        There had to be a simpler way. So we built an online platform to streamline it.
+                    </p>
+                </div>
+
+                <!-- Smiling & Formal Professional Support Team Image -->
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                    <img 
+                        src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=85" 
+                        onerror="this.src='https://placehold.co/1200x500/26374A/FFFFFF?text=FastDissolve+Support+Team'"
+                        alt="Professional, formal and cheerful corporate support team at FastDissolve Canada" 
+                        class="w-full h-[400px] object-cover object-center"
+                    />
+                </div>
+
+                <!-- What We Do -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 space-y-4">
+                    <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-canNavy-800">What we do</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        We are here to do one thing: help you complete your corporate dissolution paperwork accurately, quickly, and simply through a guided online workflow.
+                    </p>
+                    <p class="text-slate-700 leading-relaxed">
+                        You provide your basic company details through our online questionnaire. Our platform prepares the standard dissolution forms required for your jurisdiction, checks for common formatting errors, and coordinates the electronic submission at your direction. No paperwork headaches. Just a clean, organized closure so you can focus on what's next.
+                    </p>
+                </div>
+
+                <!-- Built for Canadian Founders -->
+                <div class="text-center bg-canNavy-700 text-white p-8 rounded-2xl space-y-4">
+                    <h2 class="font-heading text-2xl font-bold">Built for Canadian Founders</h2>
+                    <div class="flex flex-wrap justify-center gap-3 text-xs sm:text-sm font-semibold">
+                        <span class="bg-canNavy-800 px-4 py-1.5 rounded-full border border-slate-600">Small Business Owners</span>
+                        <span class="bg-canNavy-800 px-4 py-1.5 rounded-full border border-slate-600">Startup Founders</span>
+                        <span class="bg-canNavy-800 px-4 py-1.5 rounded-full border border-slate-600">Dormant Corporations & LPs</span>
+                    </div>
+                    <p class="text-slate-200 italic max-w-2xl mx-auto pt-2 text-lg">
+                        The recognition we value most is from business owners who finish the process and tell us: "That was so much easier than I thought."
+                    </p>
+                </div>
+
+                <!-- Why clients trust our platform -->
+                <div class="space-y-8">
+                    <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-canNavy-800 text-center">
+                        Why clients trust our platform
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
+                            <span class="w-8 h-8 rounded-full bg-canRed-100 text-canRed-600 font-bold flex items-center justify-center mb-3">1</span>
+                            <h3 class="font-heading font-bold text-lg text-canNavy-800 mb-1">We prepare and file it right</h3>
+                            <p class="text-sm text-slate-600">Standardized document preparation: Automated and reviewed form formatting tailored to federal and provincial registry templates and rules.</p>
+                        </div>
+                        <div class="p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
+                            <span class="w-8 h-8 rounded-full bg-canRed-100 text-canRed-600 font-bold flex items-center justify-center mb-3">2</span>
+                            <h3 class="font-heading font-bold text-lg text-canNavy-800 mb-1">We keep you updated at every stage</h3>
+                            <p class="text-sm text-slate-600">Step-by-step transparency: Clear email notifications from draft review to final dissolution confirmation.</p>
+                        </div>
+                        <div class="p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
+                            <span class="w-8 h-8 rounded-full bg-canRed-100 text-canRed-600 font-bold flex items-center justify-center mb-3">3</span>
+                            <h3 class="font-heading font-bold text-lg text-canNavy-800 mb-1">We reply within hours</h3>
+                            <p class="text-sm text-slate-600">Responsive customer support: Dedicated support via email whenever you have a question about your order.</p>
+                        </div>
+                        <div class="p-6 rounded-xl border border-slate-200 bg-white shadow-sm">
+                            <span class="w-8 h-8 rounded-full bg-canRed-100 text-canRed-600 font-bold flex items-center justify-center mb-3">4</span>
+                            <h3 class="font-heading font-bold text-lg text-canNavy-800 mb-1">Fast turnaround</h3>
+                            <p class="text-sm text-slate-600">We prepare your draft documents within 1 business day, and submit electronically within 1 business day of your signature approval.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Closing Note from Team -->
+                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 space-y-4 text-slate-700 leading-relaxed">
+                    <p>
+                        We built this platform because we know how much administrative friction gets in the way when you just want to move on. Closing a dormant company should be straightforward.
+                    </p>
+                    <p>
+                        Every business owner who uses our platform to close their chapter reminds us why we built this, and we are sincerely grateful for your trust. Your time, your peace of mind, and your next venture, those are what matter to us.
+                    </p>
+                    <p class="font-heading font-bold text-canNavy-800 pt-2">— The FastDissolve Team</p>
+                </div>
+
+                <!-- Bottom CTA on About -->
+                <div class="bg-canNavy-800 text-white p-8 rounded-2xl text-center space-y-5">
+                    <h3 class="font-heading text-2xl font-bold">Ready to hand off the paperwork and close this chapter with confidence?</h3>
+                    <p class="text-slate-200 max-w-2xl mx-auto text-sm sm:text-base">
+                        Closing a company feels like a big step, but our online platform makes the administrative part simple. You enter your basic business details online, review your generated forms, and we handle the electronic submission.
+                    </p>
+                    <p class="text-sm text-slate-300">
+                        Email us anytime at <a href="mailto:support@fastdissolve.ca" class="underline text-white font-medium">support@fastdissolve.ca</a> if you have questions about how our platform works or how to get started. Because the whole point of our platform is to make one thing simpler in your business life.
+                    </p>
+                    <div>
+                        <button onclick="openGetStartedModal()" class="bg-canRed-600 hover:bg-canRed-700 text-white font-heading font-bold px-8 py-3.5 rounded-lg shadow transition-all">
+                            Get started →
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: CONTACT US PAGE                    -->
+    <!-- ========================================== -->
+    <main id="view-contact" class="hidden flex-grow fade-in">
+        <section class="py-16 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Left Column: Form & Copy -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-canRed-600 bg-canRed-50 px-3 py-1 rounded-full">Support Desk</span>
+                            <h1 class="mt-3 font-heading text-3xl sm:text-4xl font-extrabold text-canNavy-800">
+                                We're here to help.
+                            </h1>
+                            <p class="mt-2 text-slate-600 text-base sm:text-lg">
+                                Whether you have a question about your company, need help with the questionnaire, or just want to check the status. Please send us a message.
+                            </p>
+                        </div>
+
+                        <form onsubmit="handleContactSubmit(event)" class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-5 shadow-sm">
+                            <div>
+                                <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Director Name</label>
+                                <input type="text" required placeholder="e.g. Sarah Jenkins" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 focus:border-canNavy-700 outline-none bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Business Name</label>
+                                <input type="text" required placeholder="e.g. Maple Leaf Ventures Inc." class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 focus:border-canNavy-700 outline-none bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Email Address</label>
+                                <input type="email" required placeholder="you@company.ca" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 focus:border-canNavy-700 outline-none bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-canNavy-800 mb-1.5">How can we help you?</label>
+                                <textarea rows="4" required placeholder="Tell us about your corporation or question..." class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 focus:border-canNavy-700 outline-none bg-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-canNavy-700 hover:bg-canNavy-800 text-white font-heading font-bold py-3.5 px-6 rounded-lg shadow transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                <span>Send Message</span>
+                            </button>
+                            <div id="contact-success" class="hidden p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-medium">
+                                Thank you! Your message has been received. Our team will get back to you within 24 hours.
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Support Image & Direct Info -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 shadow-sm">
+                            <img 
+                                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80" 
+                                alt="Smiling customer support specialist" 
+                                class="w-full h-[280px] object-cover object-top rounded-xl"
+                            />
+                        </div>
+
+                        <div class="bg-canNavy-700 text-white p-6 rounded-2xl space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-canNavy-600 p-2.5 rounded-lg">
+                                    <i data-lucide="mail" class="w-5 h-5 text-canRed-500"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-wider text-slate-300 font-semibold">Email</p>
+                                    <a href="mailto:hello@fastdissolve.ca" class="text-lg font-heading font-bold hover:underline">hello@fastdissolve.ca</a>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed pt-1">
+                                We aim to reply within 24 hours, usually sooner. Weekends may take a little longer.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                            <h3 class="font-heading font-bold text-lg text-canNavy-800">Before you contact us</h3>
+                            <p class="text-sm text-slate-600">You might find your answer faster here:</p>
+                            <ul class="space-y-2 text-sm font-semibold text-canBlue-600">
+                                <li>
+                                    <button onclick="navigateToSection('home', 'how-it-works')" class="hover:underline flex items-center gap-1.5">
+                                        <i data-lucide="arrow-right" class="w-4 h-4"></i> How it works
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="navigateToSection('home', 'faq')" class="hover:underline flex items-center gap-1.5">
+                                        <i data-lucide="arrow-right" class="w-4 h-4"></i> FAQ
+                                    </button>
+                                </li>
+                                <li>
+                                    <button onclick="navigateToSection('home', 'pricing')" class="hover:underline flex items-center gap-1.5">
+                                        <i data-lucide="arrow-right" class="w-4 h-4"></i> Pricing
+                                    </button>
+                                </li>
+                            </ul>
+                            <p class="text-xs text-slate-500 pt-2 border-t border-slate-200">
+                                Still stuck? Just email us. We'll sort it.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- VIEW 4: TRANSITION PAGE (REVIEWING DETAILS)-->
+    <!-- ========================================== -->
+    <main id="view-transition" class="hidden flex-grow bg-slate-50 py-20 fade-in">
+        <div class="max-w-xl mx-auto px-4">
+            <div class="bg-white rounded-2xl border-t-4 border-canNavy-700 shadow-xl p-8 sm:p-10 space-y-6">
+                
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-canNavy-50 border border-canNavy-100 flex items-center justify-center shrink-0">
+                        <div class="w-6 h-6 border-3 border-canNavy-700 border-t-canRed-600 rounded-full animate-spin"></div>
+                    </div>
+                    <div>
+                        <h1 class="font-heading text-2xl font-extrabold text-canNavy-800">Reviewing Details</h1>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Canadian Registry Verification</p>
+                    </div>
+                </div>
+
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    We’re reviewing your company details to confirm status, Federal / provincial requirements, and filing fees for dissolution. This will only take a moment.
+                </p>
+
+                <!-- Progress Steps Checklist -->
+                <div class="space-y-3 pt-2 border-t border-slate-100">
+                    <div id="trans-step-1" class="flex items-center justify-between p-3 rounded-lg bg-slate-50 text-sm font-medium text-slate-700">
+                        <span>Connecting to the business registries database...</span>
+                        <span class="status-icon text-emerald-600 font-bold hidden">✓</span>
+                    </div>
+                    <div id="trans-step-2" class="flex items-center justify-between p-3 rounded-lg bg-slate-50 text-sm font-medium text-slate-400">
+                        <span>Searching business records...</span>
+                        <span class="status-icon text-emerald-600 font-bold hidden">✓</span>
+                    </div>
+                    <div id="trans-step-3" class="flex items-center justify-between p-3 rounded-lg bg-slate-50 text-sm font-medium text-slate-400">
+                        <span>Verifying entity status...</span>
+                        <span class="status-icon text-emerald-600 font-bold hidden">✓</span>
+                    </div>
+                    <div id="trans-step-4" class="flex items-center justify-between p-3 rounded-lg bg-slate-50 text-sm font-medium text-slate-400">
+                        <span>Retrieving details...</span>
+                        <span class="status-icon text-emerald-600 font-bold hidden">✓</span>
+                    </div>
+                    <div id="trans-step-5" class="flex items-center justify-between p-3 rounded-lg bg-slate-50 text-sm font-medium text-slate-400">
+                        <span>Finalizing results...</span>
+                        <span class="status-icon text-emerald-600 font-bold hidden">✓</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- VIEW 5: PAYMENT PAGE                       -->
+    <!-- ========================================== -->
+    <main id="view-payment" class="hidden flex-grow bg-slate-100 py-12 lg:py-16 fade-in">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            
+            <!-- Payment Header -->
+            <div class="bg-canNavy-800 text-white p-6 sm:p-8 rounded-2xl shadow-md border-b-4 border-canRed-600">
+                <div class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-2">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                    <span>Registry Verification Complete</span>
+                </div>
+                <h1 class="font-heading text-2xl sm:text-3xl font-extrabold">
+                    Complete Your Dissolution Filing for <span id="pay-headline-biz" class="text-amber-300 underline decoration-amber-400/50">Your Corporation</span>
+                </h1>
+                <p class="mt-2 text-slate-200 text-sm sm:text-base">
+                    Your documents are ready. One more step to officially file with the <span id="pay-sub-jurisdiction" class="font-semibold text-white">Federal</span> Corporate Registry.
+                </p>
+            </div>
+
+            <!-- Khung 1: Order Summary -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                    <h2 class="font-heading font-bold text-lg text-canNavy-800 flex items-center gap-2">
+                        <i data-lucide="receipt" class="w-5 h-5 text-canNavy-700"></i>
+                        <span>Order Summary</span>
+                    </h2>
+                    <button onclick="openGetStartedModal()" class="text-xs font-semibold text-canBlue-600 hover:underline">Edit Business Details</button>
+                </div>
+                <div class="p-6 space-y-4 text-sm sm:text-base">
+                    <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+                        <span class="text-slate-600 font-medium">Business:</span>
+                        <span id="summary-biz-name" class="font-bold text-canNavy-800 text-right">Maple Tech Inc.</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1.5 border-b border-slate-100">
+                        <span class="text-slate-600 font-medium">Province/Jurisdiction:</span>
+                        <div class="flex items-center gap-2">
+                            <select id="payment-jurisdiction-select" onchange="updateJurisdictionPricing(this.value)" class="text-sm font-semibold text-canNavy-800 bg-slate-100 border border-slate-300 rounded px-2.5 py-1 focus:outline-none focus:ring-2 focus:ring-canNavy-700">
+                                <option value="Federal">Federal (Corporations Canada)</option>
+                                <option value="Alberta">Alberta</option>
+                                <option value="British Columbia">British Columbia</option>
+                                <option value="Manitoba">Manitoba</option>
+                                <option value="New Brunswick">New Brunswick</option>
+                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                <option value="Northwest Territories">Northwest Territories</option>
+                                <option value="Nova Scotia">Nova Scotia</option>
+                                <option value="Nunavut">Nunavut</option>
+                                <option value="Ontario">Ontario</option>
+                                <option value="Prince Edward Island">Prince Edward Island</option>
+                                <option value="Quebec">Quebec</option>
+                                <option value="Saskatchewan">Saskatchewan</option>
+                                <option value="Yukon">Yukon</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center py-1.5">
+                        <span class="text-slate-600">Dissolution service fee:</span>
+                        <span class="font-semibold text-slate-800">$295.00 CAD</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1.5">
+                        <span class="text-slate-600"><span id="summary-jur-label">Federal</span> Registry filing & handling:</span>
+                        <span id="summary-gov-fee" class="font-semibold text-slate-800">$20.00 CAD</span>
+                    </div>
+                    <div class="pt-4 border-t-2 border-slate-200 flex justify-between items-center">
+                        <span class="font-heading font-bold text-lg text-canNavy-800">Total amount:</span>
+                        <span id="summary-total" class="font-heading font-extrabold text-2xl text-canRed-600">$315.00 CAD</span>
+                    </div>
+                </div>
+            </div>
+
+            <form onsubmit="handlePaymentSubmit(event)" class="space-y-8">
+                <!-- Khung 2: Your Information -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="bg-slate-50 px-6 py-4 border-b border-slate-200">
+                        <h2 class="font-heading font-bold text-lg text-canNavy-800 flex items-center gap-2">
+                            <i data-lucide="user-check" class="w-5 h-5 text-canNavy-700"></i>
+                            <span>Your Information</span>
+                        </h2>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Your Name</label>
+                            <input type="text" id="pay-owner-name" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-canNavy-800 mb-1.5">
+                                Email Address <span class="text-xs font-normal text-slate-500">(We'll send all updates here)</span>
+                            </label>
+                            <input type="email" id="pay-owner-email" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khung 3: Payment Details -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                        <h2 class="font-heading font-bold text-lg text-canNavy-800 flex items-center gap-2">
+                            <i data-lucide="credit-card" class="w-5 h-5 text-canNavy-700"></i>
+                            <span>Payment Details</span>
+                        </h2>
+                        <div class="flex items-center space-x-2 text-xs font-semibold text-slate-500">
+                            <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-600"></i>
+                            <span>256-Bit SSL Encrypted</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                            <div class="sm:col-span-7">
+                                <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Card Number</label>
+                                <input type="text" required maxlength="19" placeholder="0000 0000 0000 0000" oninput="formatCardNumber(this)" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none font-mono">
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Expiry</label>
+                                <input type="text" required maxlength="5" placeholder="MM/YY" oninput="formatExpiry(this)" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none font-mono">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-sm font-bold text-canNavy-800 mb-1.5">CVC</label>
+                                <input type="text" required maxlength="4" placeholder="123" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none font-mono">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Cardholder Name</label>
+                            <input type="text" id="pay-cardholder" required placeholder="Full Name on Card" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none">
+                        </div>
+
+                        <div class="pt-2">
+                            <label class="flex items-start space-x-3 cursor-pointer">
+                                <input type="checkbox" required class="mt-1 w-4 h-4 text-canNavy-700 rounded border-slate-300 focus:ring-canNavy-700">
+                                <span class="text-sm text-slate-700">
+                                    I accept the <a href="#terms" onclick="return false;" class="text-canBlue-600 underline font-medium">Terms of Service</a> and <a href="#privacy" onclick="return false;" class="text-canBlue-600 underline font-medium">Privacy Policy</a>
+                                </span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-canRed-600 hover:bg-canRed-700 text-white font-heading font-bold text-lg py-4 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            <span id="pay-btn-label">Pay $315.00 CAD</span>
+                        </button>
+
+                        <p class="text-center text-xs text-slate-500 italic">
+                            *Secure payments processed by Stripe. Your information is encrypted with 256-bit SSL.*
+                        </p>
+
+                        <!-- Payment Confirmation Alert -->
+                        <div id="payment-success-box" class="hidden p-5 rounded-xl bg-emerald-50 border-2 border-emerald-500 text-emerald-900 space-y-2">
+                            <div class="flex items-center gap-2 font-heading font-bold text-lg text-emerald-800">
+                                <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-600"></i>
+                                <span>Payment Confirmed & Filing Initiated!</span>
+                            </div>
+                            <p class="text-sm">
+                                We have sent an instant receipt and order summary to your email. Your draft dissolution application will be ready for your review within 1 business day.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- MODAL: FORM 1 (GET STARTED QUESTIONNAIRE)  -->
+    <!-- ========================================== -->
+    <div id="get-started-modal" class="fixed inset-0 z-50 hidden bg-canNavy-900/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border-t-4 border-canRed-600 fade-in">
+            <div class="bg-canNavy-700 text-white px-6 py-5 flex items-center justify-between">
+                <div>
+                    <span id="modal-step-indicator" class="text-[11px] font-bold uppercase tracking-widest text-amber-300">Step 1 of 2</span>
+                    <h3 class="font-heading text-xl font-bold">Start Your Corporate Dissolution</h3>
+                </div>
+                <button onclick="closeGetStartedModal()" class="text-slate-300 hover:text-white p-1">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="p-6 sm:p-8">
+                <!-- Modal Step 1: Business Name & Jurisdiction -->
+                <form id="modal-form-step1" onsubmit="goToModalStep2(event)" class="space-y-5">
+                    <p class="text-sm text-slate-600">
+                        Enter your company name and jurisdiction. Takes less than 5 minutes. No account needed to start.
+                    </p>
+
+                    <div>
+                        <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Business Name *</label>
+                        <input type="text" id="modal-biz-name" required placeholder="e.g. Northern Lights Consulting Inc." class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Jurisdiction (Federal / 13 Provinces & Territories) *</label>
+                        <select id="modal-jurisdiction" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none bg-white">
+                            <option value="Federal">Federal (Corporations Canada)</option>
+                            <option value="Alberta">Alberta</option>
+                            <option value="British Columbia">British Columbia</option>
+                            <option value="Manitoba">Manitoba</option>
+                            <option value="New Brunswick">New Brunswick</option>
+                            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                            <option value="Northwest Territories">Northwest Territories</option>
+                            <option value="Nova Scotia">Nova Scotia</option>
+                            <option value="Nunavut">Nunavut</option>
+                            <option value="Ontario">Ontario</option>
+                            <option value="Prince Edward Island">Prince Edward Island</option>
+                            <option value="Quebec">Quebec</option>
+                            <option value="Saskatchewan">Saskatchewan</option>
+                            <option value="Yukon">Yukon</option>
+                        </select>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-canRed-600 hover:bg-canRed-700 text-white font-heading font-bold text-base py-3.5 px-6 rounded-lg shadow-md transition-all flex items-center justify-center gap-2">
+                            <span>Continue</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Modal Step 2: Owner Name & Email Address -->
+                <form id="modal-form-step2" onsubmit="submitForm1(event)" class="hidden space-y-5 fade-in">
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-slate-600">
+                            Where should we send your prepared dissolution draft?
+                        </p>
+                        <button type="button" onclick="backToModalStep1()" class="text-xs font-semibold text-canBlue-600 hover:underline shrink-0 ml-2">← Back</button>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Owner / Director Name *</label>
+                        <input type="text" id="modal-owner-name" required placeholder="Your Full Legal Name" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-canNavy-800 mb-1.5">Email Address *</label>
+                        <input type="email" id="modal-owner-email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-canNavy-700 outline-none">
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-canRed-600 hover:bg-canRed-700 text-white font-heading font-bold text-base py-3.5 px-6 rounded-lg shadow-md transition-all flex items-center justify-center gap-2">
+                            <span>Submit & Review Filing</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer class="bg-canNavy-900 text-slate-300 border-t-4 border-canRed-600 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-slate-800">
+                <!-- Col 1: Legal Entity Details -->
+                <div class="md:col-span-6 space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-heading font-extrabold text-xl text-white">fastdissolve<span class="text-canRed-600">.ca</span></span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                        <strong>fastdissolve.ca</strong> (Operated by [Insert Legal BC Company Name])<br>
+                        Incorporation Number: [Insert BC Number, e.g., BC1234567] | Business Number (BN): [Insert 9-digit CRA BN if available]<br>
+                        Registered Office Address: [Insert Full BC Registered Address]<br>
+                        Support Email: <a href="mailto:support@fastdissolve.ca" class="text-white underline">support@fastdissolve.ca</a>
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="md:col-span-3 space-y-2">
+                    <p class="font-heading font-bold text-white uppercase tracking-wider text-xs">Quick links</p>
+                    <ul class="space-y-1.5 text-xs sm:text-sm">
+                        <li><button onclick="navigateToSection('home', 'how-it-works')" class="hover:text-white transition-colors">How it works</button></li>
+                        <li><button onclick="navigateToSection('home', 'pricing')" class="hover:text-white transition-colors">Pricing</button></li>
+                        <li><button onclick="navigateToSection('home', 'faq')" class="hover:text-white transition-colors">FAQ</button></li>
+                        <li><button onclick="navigateTo('about')" class="hover:text-white transition-colors">About Us</button></li>
+                        <li><button onclick="navigateTo('contact')" class="hover:text-white transition-colors">Contact</button></li>
+                        <li><a href="#terms" onclick="return false;" class="hover:text-white transition-colors">Terms of Use</a></li>
+                        <li><a href="#privacy" onclick="return false;" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Payment & Security -->
+                <div class="md:col-span-3 space-y-3">
+                    <p class="font-heading font-bold text-white uppercase tracking-wider text-xs">Payment & Security</p>
+                    <div class="bg-canNavy-800 p-4 rounded-xl border border-slate-700 space-y-2">
+                        <div class="flex items-center space-x-2 text-emerald-400 font-semibold text-xs">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            <span>Pay securely via Stripe</span>
+                        </div>
+                        <p class="text-xs text-slate-400">256‑bit SSL encrypted checkout</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer & Copyright -->
+            <div class="space-y-4 text-xs text-slate-400 leading-relaxed">
+                <p>
+                    <strong class="text-slate-200">Disclaimer:</strong> fastdissolve.ca is a private, technology-enabled administrative document preparation platform. We are not a law firm, accounting practice, or government agency, and we are not affiliated with Corporations Canada, the Canada Revenue Agency (CRA), or any provincial corporate registry. We provide self-help software tools and administrative filing assistance at your direction, not legal, tax, or financial advice.
+                </p>
+                <p class="text-slate-500 pt-2">
+                    © 2026 [Insert Legal BC Company Name] (operating as fastdissolve.ca). All rights reserved.
+                </p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Interactive Application Script -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Standard Government Filing & Handling Fees by Jurisdiction (Federal + All 13 Provinces/Territories in CAD)
+        const jurisdictionFees = {
+            'Federal': 20.00,
+            'Alberta': 50.00,
+            'British Columbia': 35.00,
+            'Manitoba': 45.00,
+            'New Brunswick': 40.00,
+            'Newfoundland and Labrador': 40.00,
+            'Northwest Territories': 50.00,
+            'Nova Scotia': 45.00,
+            'Nunavut': 50.00,
+            'Ontario': 25.00,
+            'Prince Edward Island': 40.00,
+            'Quebec': 40.00,
+            'Saskatchewan': 50.00,
+            'Yukon': 50.00
+        };
+
+        // Application State
+        let appState = {
+            businessName: 'Maple Tech Inc.',
+            ownerName: '',
+            email: '',
+            jurisdiction: 'Federal'
+        };
+
+        // Hero Inline 2-Step Order Box Controls
+        function goToHeroStep2(e) {
+            e.preventDefault();
+            appState.businessName = document.getElementById('hero-biz-name').value.trim();
+            appState.jurisdiction = document.getElementById('hero-jurisdiction').value;
+            document.getElementById('hero-form-step1').classList.add('hidden');
+            document.getElementById('hero-form-step2').classList.remove('hidden');
+            document.getElementById('hero-owner-name').focus();
+        }
+
+        function backToHeroStep1() {
+            document.getElementById('hero-form-step2').classList.add('hidden');
+            document.getElementById('hero-form-step1').classList.remove('hidden');
+        }
+
+        function submitHeroOrder(e) {
+            e.preventDefault();
+            appState.ownerName = document.getElementById('hero-owner-name').value.trim();
+            appState.email = document.getElementById('hero-owner-email').value.trim();
+            runTransitionSequence();
+        }
+
+        // View Navigation Switcher
+        function navigateTo(viewName) {
+            const views = ['home', 'about', 'contact', 'transition', 'payment'];
+            views.forEach(v => {
+                const el = document.getElementById(`view-${v}`);
+                if (el) el.classList.add('hidden');
+            });
+
+            const target = document.getElementById(`view-${viewName}`);
+            if (target) {
+                target.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Navigate to Homepage and Scroll to Section
+        function navigateToSection(viewName, sectionId) {
+            navigateTo(viewName);
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 60);
+        }
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+
+        // Toggle FAQ Accordion
+        function toggleFaq(id) {
+            const ans = document.getElementById(`faq-ans-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            if (ans) {
+                ans.classList.toggle('hidden');
+            }
+            if (icon) {
+                icon.classList.toggle('rotate-180');
+            }
+        }
+
+        // Modal Controls (Form 1 - 2 Steps)
+        function openGetStartedModal() {
+            document.getElementById('get-started-modal').classList.remove('hidden');
+            backToModalStep1();
+            document.getElementById('modal-biz-name').focus();
+        }
+
+        function closeGetStartedModal() {
+            document.getElementById('get-started-modal').classList.add('hidden');
+        }
+
+        function goToModalStep2(e) {
+            e.preventDefault();
+            appState.businessName = document.getElementById('modal-biz-name').value.trim();
+            appState.jurisdiction = document.getElementById('modal-jurisdiction').value;
+            document.getElementById('modal-form-step1').classList.add('hidden');
+            document.getElementById('modal-form-step2').classList.remove('hidden');
+            document.getElementById('modal-step-indicator').textContent = 'Step 2 of 2';
+            document.getElementById('modal-owner-name').focus();
+        }
+
+        function backToModalStep1() {
+            document.getElementById('modal-form-step2').classList.add('hidden');
+            document.getElementById('modal-form-step1').classList.remove('hidden');
+            document.getElementById('modal-step-indicator').textContent = 'Step 1 of 2';
+        }
+
+        // Handle Modal Form 1 Submission -> Trigger Transition Page -> Payment Page
+        function submitForm1(e) {
+            e.preventDefault();
+            appState.businessName = document.getElementById('modal-biz-name').value.trim();
+            appState.jurisdiction = document.getElementById('modal-jurisdiction').value;
+            appState.ownerName = document.getElementById('modal-owner-name').value.trim();
+            appState.email = document.getElementById('modal-owner-email').value.trim();
+
+            closeGetStartedModal();
+            runTransitionSequence();
+        }
+
+        // Animated Transition Sequence ("Reviewing Details")
+        function runTransitionSequence() {
+            navigateTo('transition');
+
+            // Reset steps
+            for (let i = 1; i <= 5; i++) {
+                const step = document.getElementById(`trans-step-${i}`);
+                step.classList.remove('bg-emerald-50', 'text-canNavy-800', 'border', 'border-emerald-200');
+                step.classList.add('text-slate-400');
+                step.querySelector('.status-icon').classList.add('hidden');
+            }
+
+            const delays = [450, 1000, 1600, 2200, 2750];
+            delays.forEach((delay, idx) => {
+                const stepNum = idx + 1;
+                setTimeout(() => {
+                    const step = document.getElementById(`trans-step-${stepNum}`);
+                    step.classList.remove('text-slate-400');
+                    step.classList.add('bg-emerald-50', 'text-canNavy-800', 'border', 'border-emerald-200');
+                    step.querySelector('.status-icon').classList.remove('hidden');
+                }, delay);
+            });
+
+            // Redirect to Payment View after sequence completes
+            setTimeout(() => {
+                populatePaymentPage();
+                navigateTo('payment');
+            }, 3350);
+        }
+
+        // Populate Payment Page with State Data
+        function populatePaymentPage() {
+            document.getElementById('pay-headline-biz').textContent = appState.businessName;
+            document.getElementById('summary-biz-name').textContent = appState.businessName;
+            document.getElementById('pay-owner-name').value = appState.ownerName;
+            document.getElementById('pay-cardholder').value = appState.ownerName;
+            document.getElementById('pay-owner-email').value = appState.email;
+            document.getElementById('payment-jurisdiction-select').value = appState.jurisdiction;
+
+            updateJurisdictionPricing(appState.jurisdiction);
+        }
+
+        // Update Fee Calculation Dynamically
+        function updateJurisdictionPricing(jurisdiction) {
+            appState.jurisdiction = jurisdiction;
+            const serviceFee = 295.00;
+            const govFee = jurisdictionFees[jurisdiction] !== undefined ? jurisdictionFees[jurisdiction] : 25.00;
+            const total = serviceFee + govFee;
+
+            document.getElementById('pay-sub-jurisdiction').textContent = jurisdiction;
+            document.getElementById('summary-jur-label').textContent = jurisdiction;
+            document.getElementById('summary-gov-fee').textContent = `$${govFee.toFixed(2)} CAD`;
+            document.getElementById('summary-total').textContent = `$${total.toFixed(2)} CAD`;
+            document.getElementById('pay-btn-label').textContent = `Pay $${total.toFixed(2)} CAD`;
+        }
+
+        // Format Card Input
+        function formatCardNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            let formatted = value.match(/.{1,4}/g)?.join(' ') || '';
+            input.value = formatted;
+        }
+
+        function formatExpiry(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length >= 3) {
+                input.value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            } else {
+                input.value = value;
+            }
+        }
+
+        // Handle Payment Form Submit
+        function handlePaymentSubmit(e) {
+            e.preventDefault();
+            const successBox = document.getElementById('payment-success-box');
+            successBox.classList.remove('hidden');
+            successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Handle Contact Form Submit
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contact-success').classList.remove('hidden');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
