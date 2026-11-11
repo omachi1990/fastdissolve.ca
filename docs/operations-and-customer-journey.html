@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastDissolve.ca — Sổ Tay Vận Hành & Quy Trình Khách Hàng (Master Operations & Customer Journey)</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        canNavy: {
+                            50: '#F0F4F8',
+                            100: '#D9E2EC',
+                            200: '#BCCCDC',
+                            300: '#9FB3C8',
+                            600: '#334E68',
+                            700: '#26374A', // Official Canada.ca Navy
+                            800: '#1B2735',
+                            900: '#0B192C', // Deep Canadian Executive Navy
+                        },
+                        canRed: {
+                            50: '#FDF2F2',
+                            100: '#FDE8E8',
+                            500: '#EF4444',
+                            600: '#D80621', // Canadian Flag Maple Crimson
+                            700: '#B1041A',
+                            800: '#8A0314',
+                        },
+                        canGold: {
+                            50: '#FEF9C3',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                        },
+                        canSlate: {
+                            50: '#F8FAFC',
+                            100: '#F1F5F9',
+                            200: '#E2E8F0',
+                            300: '#CBD5E1',
+                            700: '#334155',
+                            800: '#1E293B',
+                            900: '#0F172A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom print stylesheet */
+        @media print {
+            .no-print { display: none !important; }
+            .print-block { display: block !important; }
+            .page-break { page-break-after: always; }
+            body { font-size: 11pt; color: #000; background: #fff !important; }
+            .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl { box-shadow: none !important; }
+            .border { border-color: #cbd5e1 !important; }
+            .tab-pane { display: block !important; opacity: 1 !important; }
+        }
+
+        /* Glassmorphism subtle */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+
+        .step-badge {
+            transition: all 0.2s ease-in-out;
+        }
+        .step-badge:hover {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="bg-canSlate-50 text-canSlate-800 antialiased min-h-screen font-sans selection:bg-canRed-100 selection:text-canRed-800">
+
+    <!-- TOP CANADIAN BANNER -->
+    <aside aria-label="Thông báo chế độ tài liệu" class="bg-canNavy-900 border-b border-canNavy-800 text-slate-300 text-xs py-2 px-4 no-print">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-canRed-600 text-white font-bold text-[10px]">🍁</span>
+                <span class="font-semibold text-white tracking-wide">FastDissolve.ca Documentation Portal</span>
+                <span class="hidden sm:inline text-slate-400">|</span>
+                <span class="hidden sm:inline text-slate-300">Tài liệu Chuẩn hóa Quy trình Nghiệp vụ Giải thể Doanh nghiệp Canada</span>
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Phiên bản v1.2 (Active)</span>
+                <span class="hidden md:inline font-mono text-[11px] bg-canNavy-800 px-2 py-0.5 rounded border border-canNavy-700 text-slate-300">CBCA & 13 Provinces</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-canSlate-200 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 py-3">
+                
+                <!-- Logo Lockup -->
+                <div class="flex items-center gap-3.5">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-canNavy-900 to-canNavy-700 flex items-center justify-center text-white shadow-md border border-canNavy-600">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-canRed-500"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1.5 font-heading text-xl font-bold tracking-tight text-canNavy-900">
+                            <span>FastDissolve</span>
+                            <span class="text-canRed-600">.ca</span>
+                            <span class="text-[10px] uppercase font-mono px-1.5 py-0.5 bg-canNavy-100 text-canNavy-800 rounded font-semibold ml-1">SOP Manual</span>
+                        </div>
+                        <p class="text-[11px] text-canSlate-700 font-medium">Hệ thống Quy trình Khách hàng & Vận hành Tự động</p>
+                    </div>
+                </div>
+
+                <!-- Action Controls -->
+                <div class="flex items-center gap-3">
+                    <button onclick="window.print()" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-canNavy-800 bg-white hover:bg-canSlate-100 border border-canSlate-300 rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-canNavy-700" title="Xuất ra PDF hoặc in tài liệu này">
+                        <i data-lucide="printer" class="w-4 h-4 text-canNavy-700"></i>
+                        <span class="hidden sm:inline">In / Xuất PDF</span>
+                    </button>
+                    <a href="#matrix" class="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-bold text-white bg-canRed-600 hover:bg-canRed-700 rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-canRed-500">
+                        <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                        <span>13 Tỉnh Bang</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRIMARY NAVIGATION TABS -->
+            <nav class="flex space-x-1 sm:space-x-2 border-t border-canSlate-100 pt-1 overflow-x-auto pb-1" id="mainTabs" aria-label="Các phân hệ tài liệu">
+                <button onclick="switchTab('customer-flow')" id="btn-customer-flow" class="tab-button active-tab flex items-center gap-2 py-2.5 px-3.5 sm:px-4 text-xs sm:text-sm font-semibold rounded-lg border-b-2 border-canRed-600 text-canRed-600 bg-canRed-50/50 transition-colors whitespace-nowrap">
+                    <i data-lucide="users" class="w-4 h-4"></i>
+                    <span>1. Quy Trình Khách Hàng (Customer Journey)</span>
+                </button>
+                <button onclick="switchTab('ops-playbook')" id="btn-ops-playbook" class="tab-button flex items-center gap-2 py-2.5 px-3.5 sm:px-4 text-xs sm:text-sm font-semibold rounded-lg border-b-2 border-transparent text-canSlate-600 hover:text-canNavy-900 hover:bg-canSlate-100 transition-colors whitespace-nowrap">
+                    <i data-lucide="cpu" class="w-4 h-4"></i>
+                    <span>2. Vận Hành Nội Bộ & Hệ Thống (Operations SOP)</span>
+                </button>
+                <button onclick="switchTab('swimlane-flow')" id="btn-swimlane-flow" class="tab-button flex items-center gap-2 py-2.5 px-3.5 sm:px-4 text-xs sm:text-sm font-semibold rounded-lg border-b-2 border-transparent text-canSlate-600 hover:text-canNavy-900 hover:bg-canSlate-100 transition-colors whitespace-nowrap">
+                    <i data-lucide="git-merge" class="w-4 h-4"></i>
+                    <span>3. Ma Trận Phối Hợp (End-to-End Swimlane)</span>
+                </button>
+                <button onclick="switchTab('jurisdictions-flow')" id="btn-jurisdictions-flow" class="tab-button flex items-center gap-2 py-2.5 px-3.5 sm:px-4 text-xs sm:text-sm font-semibold rounded-lg border-b-2 border-transparent text-canSlate-600 hover:text-canNavy-900 hover:bg-canSlate-100 transition-colors whitespace-nowrap">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    <span>4. Biểu Phí & Thủ Tục 13 Tỉnh Bang</span>
+                </button>
+                <button onclick="switchTab('exceptions-playbook')" id="btn-exceptions-playbook" class="tab-button flex items-center gap-2 py-2.5 px-3.5 sm:px-4 text-xs sm:text-sm font-semibold rounded-lg border-b-2 border-transparent text-canSlate-600 hover:text-canNavy-900 hover:bg-canSlate-100 transition-colors whitespace-nowrap">
+                    <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                    <span>5. Xử Lý Tình Huống & SLA Hỗ Trợ</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO INTRODUCTION SECTION -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <section aria-labelledby="hero-heading" class="bg-gradient-to-r from-canNavy-900 via-canNavy-800 to-canNavy-900 rounded-2xl p-6 sm:p-8 text-white shadow-lg mb-8 relative overflow-hidden border border-canNavy-700">
+            <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+                <i data-lucide="maple-leaf" class="w-80 h-80 text-white"></i>
+            </div>
+            <div class="relative z-10 max-w-4xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canRed-600/20 border border-canRed-500/30 text-canRed-200 text-xs font-semibold uppercase tracking-wider mb-3">
+                    <span class="w-2 h-2 rounded-full bg-canRed-500"></span>
+                    Canadian Corporate Dissolution Framework
+                </div>
+                <h1 id="hero-heading" class="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-3">
+                    Sổ Tay Vận Hành & Bản Đồ Hành Trình Khách Hàng FastDissolve.ca
+                </h1>
+                <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                    Tài liệu chuẩn hóa toàn diện giúp đội ngũ sáng lập, chuyên viên pháp chế và kỹ sư vận hành đồng bộ 100% quy trình: Từ khoảnh khắc chủ doanh nghiệp Canada tìm kiếm dịch vụ, khai báo giải thể trực tuyến, ký điện tử nghị quyết cổ đông cho đến khi cơ quan quản lý liên bang/tỉnh bang cấp <strong>Certificate of Dissolution</strong> và hoàn tất đóng tài khoản thuế <strong>CRA BN9</strong>.
+                </p>
+
+                <!-- High-level Metric Badges -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 border-t border-canNavy-700/60">
+                    <div class="bg-canNavy-800/80 p-3 rounded-xl border border-canNavy-700">
+                        <span class="text-xs text-slate-400 block mb-1">Thời gian hoàn thành</span>
+                        <span class="text-lg sm:text-xl font-bold text-white font-mono">1 – 3 Ngày</span>
+                    </div>
+                    <div class="bg-canNavy-800/80 p-3 rounded-xl border border-canNavy-700">
+                        <span class="text-xs text-slate-400 block mb-1">Mức độ tự động hóa</span>
+                        <span class="text-lg sm:text-xl font-bold text-emerald-400 font-mono">85% Pipeline</span>
+                    </div>
+                    <div class="bg-canNavy-800/80 p-3 rounded-xl border border-canNavy-700">
+                        <span class="text-xs text-slate-400 block mb-1">Phạm vi tài phán</span>
+                        <span class="text-lg sm:text-xl font-bold text-white font-mono">Federal + 13 Prov</span>
+                    </div>
+                    <div class="bg-canNavy-800/80 p-3 rounded-xl border border-canNavy-700">
+                        <span class="text-xs text-slate-400 block mb-1">Chuẩn bảo mật dữ liệu</span>
+                        <span class="text-lg sm:text-xl font-bold text-canGold-500 font-mono">PIPEDA & PCI-DSS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TAB 1: QUY TRÌNH KHÁCH HÀNG (CUSTOMER EXPERIENCE JOURNEY) -->
+        <!-- =================================================================== -->
+        <div id="tab-customer-flow" class="tab-pane space-y-6">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-canSlate-200 gap-3">
+                <div>
+                    <h2 class="font-heading text-xl sm:text-2xl font-bold text-canNavy-900">1. Hành Trình Trải Nghiệm Khách Hàng (Customer Journey)</h2>
+                    <p class="text-sm text-canSlate-700">Trải nghiệm 6 bước mượt mà, tối giản giấy tờ, định hướng thiết bị di động (Mobile-First) dành cho Giám đốc & Cổ đông Canada.</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg text-xs font-semibold">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                    <span>Tỷ lệ hoàn tất biểu mẫu mục tiêu: > 78%</span>
+                </div>
+            </div>
+
+            <!-- Customer Journey Timeline / Stepper Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- STEP 1 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between hover:border-canRed-300 hover:shadow-md transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-canNavy-900 text-white font-mono font-bold text-sm flex items-center justify-center">01</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">Thời lượng: 2 Phút</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-canNavy-900 mb-2 flex items-center gap-2">
+                            <span>Tra Cứu & Thẩm Định Điều Kiện</span>
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-4 leading-relaxed">
+                            Khách hàng truy cập trang chủ hoặc landing page theo tỉnh bang để xác thực thông tin pháp lý của công ty cần giải thể.
+                        </p>
+                        
+                        <div class="space-y-2.5 bg-canSlate-50 p-3.5 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Nhập <strong>Corporation Name</strong> hoặc <strong>CRA 9-digit Business Number (BN)</strong>.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Chọn khu vực tài phán: <strong>Federal (CBCA)</strong> hoặc 1 trong <strong>13 Tỉnh bang/Vùng lãnh thổ</strong>.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Kiểm tra 3 điều kiện giải thể tự nguyện: Không còn nợ chưa thu hồi, không có tài sản tồn đọng, nộp thuế đầy đủ.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Giao diện: <strong class="text-canSlate-800">Search Widget</strong></span>
+                        <span class="font-mono text-emerald-600 font-semibold">Tự động phát hiện Lead</span>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between hover:border-canRed-300 hover:shadow-md transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-canNavy-900 text-white font-mono font-bold text-sm flex items-center justify-center">02</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">Thời lượng: 3 Phút</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-canNavy-900 mb-2 flex items-center gap-2">
+                            <span>Điền Thông Tin Hồ Sơ Tối Giản</span>
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-4 leading-relaxed">
+                            Form biểu mẫu 3 bước trên điện thoại (Mobile-optimized), ngăn chặn hoàn toàn việc phải gõ lại thông tin rườm rà.
+                        </p>
+                        
+                        <div class="space-y-2.5 bg-canSlate-50 p-3.5 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Họ tên, email, số điện thoại của <strong>Director đại diện</strong> liên hệ.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Địa chỉ lưu trữ hồ sơ công ty sau giải thể (Record Keeping Address - lưu 6 năm theo luật).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Lựa chọn dịch vụ gia tăng: Đóng mã số thuế CRA (RC, RZ, RP), xử lý hồ sơ hỏa tốc 24 giờ.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Giao diện: <strong class="text-canSlate-800">Multi-step Intake</strong></span>
+                        <span class="font-mono text-blue-600 font-semibold">Tự lưu bản nháp</span>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between hover:border-canRed-300 hover:shadow-md transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-canNavy-900 text-white font-mono font-bold text-sm flex items-center justify-center">03</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Thời lượng: 1 Phút</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-canNavy-900 mb-2 flex items-center gap-2">
+                            <span>Báo Giá Minh Bạch & Thanh Toán</span>
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-4 leading-relaxed">
+                            Bảng tóm tắt tài chính chuẩn CAD ($), bóc tách rõ phí dịch vụ, lệ phí chính phủ tỉnh bang và thuế GST/HST.
+                        </p>
+                        
+                        <div class="space-y-2.5 bg-canSlate-50 p-3.5 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Phí FastDissolve trọn gói: <strong>$249 CAD</strong> (không phí ẩn).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Lệ phí chính phủ thực thu (Government Statutory Fee): Federal $0, Ontario $25 CAD, BC $20 CAD...</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Cổng thanh toán Stripe: Thẻ tín dụng, Apple Pay, Google Pay, hóa đơn VAT/GST tự động.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Giao diện: <strong class="text-canSlate-800">Stripe Checkout CAD</strong></span>
+                        <span class="font-mono text-emerald-600 font-semibold">Tức thì & Bảo mật 100%</span>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between hover:border-canRed-300 hover:shadow-md transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-canNavy-900 text-white font-mono font-bold text-sm flex items-center justify-center">04</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">Thời lượng: 2 Phút</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-canNavy-900 mb-2 flex items-center gap-2">
+                            <span>Ký Số Nghị Quyết Cổ Đông & Giám Đốc</span>
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-4 leading-relaxed">
+                            Khách hàng nhận email chứa liên kết ký số bảo mật trên điện thoại (Eversign / DocuSign integration).
+                        </p>
+                        
+                        <div class="space-y-2.5 bg-canSlate-50 p-3.5 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Ký <strong>Special Resolution of Shareholders</strong> (Nghị quyết cổ đông thông qua giải thể >= 66.7%).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Ký xác nhận <strong>Director Consent & Statement of Solvency</strong> (Không nợ xấu).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Ký bằng ngón tay trên màn hình cảm ứng hoặc nhập tên hợp pháp, có chứng chỉ audit trail.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Giao diện: <strong class="text-canSlate-800">E-Signature Portal</strong></span>
+                        <span class="font-mono text-amber-600 font-semibold">Giá trị pháp lý 100%</span>
+                    </div>
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between hover:border-canRed-300 hover:shadow-md transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-canNavy-900 text-white font-mono font-bold text-sm flex items-center justify-center">05</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">Thời gian: 24h - 48h</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-canNavy-900 mb-2 flex items-center gap-2">
+                            <span>Theo Dõi Tiến Độ Thời Gian Thực</span>
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-4 leading-relaxed">
+                            Khách hàng nhận mã tra cứu hồ sơ (dạng <code class="bg-slate-100 px-1 py-0.5 rounded text-canRed-600 font-mono">FD-CA-84920</code>) và theo dõi trực tiếp trạng thái nộp với chính phủ.
+                        </p>
+                        
+                        <div class="space-y-2.5 bg-canSlate-50 p-3.5 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Xem 5 mốc trạng thái: Đã nhận đơn ➔ Đã thẩm định ➔ Đã ký số ➔ Đang nộp Sở ➔ Đã cấp chứng nhận.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Nhận SMS thông báo tức thì khi chuyên viên nộp hồ sơ vào hệ thống Corporations Canada / OBR.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Gửi tin nhắn hoặc yêu cầu hỗ trợ 1-click liên kết trực tiếp với chuyên viên pháp chế phụ trách.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Giao diện: <strong class="text-canSlate-800">Tracking Portal</strong></span>
+                        <span class="font-mono text-purple-600 font-semibold">Cập nhật Real-time</span>
+                    </div>
+                </div>
+
+                <!-- STEP 6 -->
+                <div class="bg-white rounded-2xl border border-emerald-300 shadow-sm p-6 relative flex flex-col justify-between hover:border-emerald-400 hover:shadow-md transition-all bg-emerald-50/20">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-emerald-600 text-white font-mono font-bold text-sm flex items-center justify-center">06</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">Hoàn Tất</span>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-emerald-950 mb-2 flex items-center gap-2">
+                            <span>Nhận Giấy Chứng Nhận & Đóng Hồ Sơ</span>
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-4 leading-relaxed">
+                            Bàn giao gói tài liệu pháp lý giải thể hoàn chỉnh có dấu xác nhận chính thức của cơ quan có thẩm quyền Canada.
+                        </p>
+                        
+                        <div class="space-y-2.5 bg-white p-3.5 rounded-xl border border-emerald-200 text-xs mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="award" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Tải về file PDF chính thức: <strong>Certificate of Dissolution</strong> (Có mã vạch & số xác nhận của chính phủ).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Nhận bộ hồ sơ lưu trữ nội bộ (Minute Book Dissolution Bundle & Signed Resolutions).</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0"></i>
+                                <span>Bộ hướng dẫn đóng tài khoản thuế CRA (CRA Corporate Income Tax RC, Payroll RP, GST/HST RT).</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-emerald-200 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Giao diện: <strong class="text-canSlate-800">Download Vault</strong></span>
+                        <span class="font-mono text-emerald-700 font-semibold">Lưu trữ bảo mật R2 CDN</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Customer Touchpoints Summary Table -->
+            <div class="bg-white rounded-2xl border border-canSlate-200 p-6 shadow-sm mt-6">
+                <h3 class="font-heading text-base font-bold text-canNavy-900 mb-4 flex items-center gap-2">
+                    <i data-lucide="bell-ring" class="w-4 h-4 text-canRed-600"></i>
+                    <span>Các Điểm Chạm Tự Động Với Khách Hàng (Automated Touchpoints & Notifications)</span>
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead>
+                            <tr class="bg-canSlate-100 text-canNavy-900 border-b border-canSlate-200 font-semibold">
+                                <th class="p-3">Sự Kiện Kích Hoạt</th>
+                                <th class="p-3">Kênh Tương Tác</th>
+                                <th class="p-3">Thời Điểm Gửi</th>
+                                <th class="p-3">Nội Dung Chính</th>
+                                <th class="p-3">Mục Tiêu UX</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-canSlate-200 text-canSlate-700">
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3 font-semibold text-canNavy-900">1. Tạo Lead bỏ dở giỏ hàng</td>
+                                <td class="p-3"><span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded border border-blue-200">Email</span></td>
+                                <td class="p-3 font-mono">Sau 1h, 24h, 72h</td>
+                                <td class="p-3">Nhắc nhở tiếp tục hồ sơ với 1-click magic link, giải đáp thắc mắc về nợ thuế CRA.</td>
+                                <td class="p-3 text-emerald-600 font-semibold">Thu hồi 15-22% đơn hàng bỏ dở</td>
+                            </tr>
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3 font-semibold text-canNavy-900">2. Thanh toán Stripe thành công</td>
+                                <td class="p-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded border border-emerald-200">Email + SMS</span></td>
+                                <td class="p-3 font-mono">Tức thì (&lt; 10s)</td>
+                                <td class="p-3">Gửi mã hồ sơ, hóa đơn điện tử, thông báo chuyên viên phụ trách và link theo dõi.</td>
+                                <td class="p-3">Xây dựng niềm tin & giảm sốc giao dịch</td>
+                            </tr>
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3 font-semibold text-canNavy-900">3. Hồ sơ soạn xong, cần ký số</td>
+                                <td class="p-3"><span class="px-2 py-0.5 bg-purple-50 text-purple-700 rounded border border-purple-200">Email + SMS</span></td>
+                                <td class="p-3 font-mono">Trong vòng 4 - 8 giờ</td>
+                                <td class="p-3">Link ký điện tử Eversign bảo mật cho Cổ đông & Giám đốc trên điện thoại di động.</td>
+                                <td class="p-3">Rút ngắn thời gian ký &lt; 2 giờ</td>
+                            </tr>
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3 font-semibold text-canNavy-900">4. Đã nộp lên Cơ quan Đăng ký</td>
+                                <td class="p-3"><span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded border border-blue-200">Email + In-app</span></td>
+                                <td class="p-3 font-mono">Tức thì khi nộp</td>
+                                <td class="p-3">Cập nhật mã tiếp nhận của Chính phủ (Filing Confirmation Number) và thời gian dự kiến.</td>
+                                <td class="p-3">Loại bỏ cuộc gọi/ticket hỏi tiến độ</td>
+                            </tr>
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3 font-semibold text-canNavy-900">5. Cơ quan Nhà nước phê duyệt</td>
+                                <td class="p-3"><span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded border border-emerald-200">Email + SMS</span></td>
+                                <td class="p-3 font-mono">Ngay khi có kết quả</td>
+                                <td class="p-3">Chúc mừng giải thể thành công, đính kèm file PDF Certificate of Dissolution & hướng dẫn CRA.</td>
+                                <td class="p-3 text-emerald-700 font-semibold">Tối đa hóa NPS & Review 5 sao</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- TAB 2: VẬN HÀNH NỘI BỘ (OPERATIONS SOP PLAYBOOK) -->
+        <!-- =================================================================== -->
+        <div id="tab-ops-playbook" class="tab-pane hidden space-y-6">
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-canSlate-200 gap-3">
+                <div>
+                    <h2 class="font-heading text-xl sm:text-2xl font-bold text-canNavy-900">2. Quy Trình Vận Hành & Tự Động Hóa Back-Office (Operations SOP)</h2>
+                    <p class="text-sm text-canSlate-700">Quy chuẩn xử lý đơn hàng, kiểm tra tính pháp lý, sinh văn bản tự động và nộp hồ sơ lên hệ thống đăng ký doanh nghiệp Canada.</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-canNavy-900 text-white rounded-lg text-xs font-mono font-semibold">
+                    <i data-lucide="cpu" class="w-4 h-4 text-emerald-400"></i>
+                    <span>Next.js 16 + Workflow Engine</span>
+                </div>
+            </div>
+
+            <!-- Operations Process Grid (6 SOP Stages) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- SOP 1 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-canNavy-100 text-canNavy-900 font-mono text-xs font-bold">SOP-01</span>
+                            <span class="text-xs font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Tự Động 100%</span>
+                        </div>
+                        <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                            Tiếp Nhận Đơn Hàng & Khởi Tạo ServiceCase
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-3 leading-relaxed">
+                            Xử lý sự kiện Webhook Stripe thanh toán thành công thông qua hàm nguyên tử <code class="text-canRed-600 font-mono">processPaymentSuccess()</code>.
+                        </p>
+                        
+                        <div class="space-y-2 bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Chống lặp thanh toán qua bảng <code class="font-mono text-slate-800">StripeWebhookEvent</code>.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Tạo record <code class="font-mono text-slate-800">Order</code> (PAID) và <code class="font-mono text-slate-800">Invoice</code> trong một <code class="font-mono text-slate-800">$transaction</code> duy nhất.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Tự động khởi tạo <code class="font-mono text-slate-800">ServiceCase</code> kèm 6 sub-tasks theo mẫu tỉnh bang sở tại.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Bắn thông báo tức thì lên kênh Telegram Quản trị viên (<code class="font-mono text-slate-800">@FastDissolveAlerts</code>).</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Thời gian phản hồi: <strong class="text-canSlate-800">&lt; 3 giây</strong></span>
+                        <span class="text-canNavy-700 font-semibold">Chịu trách nhiệm: System Bot</span>
+                    </div>
+                </div>
+
+                <!-- SOP 2 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-canNavy-100 text-canNavy-900 font-mono text-xs font-bold">SOP-02</span>
+                            <span class="text-xs font-mono text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">SLA: &lt; 4 Giờ</span>
+                        </div>
+                        <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                            Thẩm Tra Tính Pháp Lý Doanh Nghiệp
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-3 leading-relaxed">
+                            Chuyên viên pháp chế (Filing Specialist) rà soát trạng thái thực tế của công ty trên cơ sở dữ liệu đăng ký liên bang hoặc tỉnh bang.
+                        </p>
+                        
+                        <div class="space-y-2 bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Kiểm tra trạng thái trên <strong>Corporations Canada / OBR / BC Registries</strong> (Active / Default).</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Kiểm tra nghĩa vụ nộp Báo cáo thường niên (Annual Return Form 22 CBCA): Nếu thiếu, thông báo bổ sung.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Đối chiếu danh sách Giám đốc hợp pháp hiện hành với người ký tên trong đơn yêu cầu.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Công cụ: <strong class="text-canSlate-800">Gov Registry Search</strong></span>
+                        <span class="text-canNavy-700 font-semibold">Filing Specialist</span>
+                    </div>
+                </div>
+
+                <!-- SOP 3 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-canNavy-100 text-canNavy-900 font-mono text-xs font-bold">SOP-03</span>
+                            <span class="text-xs font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Tự Động 90%</span>
+                        </div>
+                        <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                            Tự Động Soạn Thảo & Phát Hành Ký Số
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-3 leading-relaxed">
+                            Động cơ tài liệu sinh tự động biểu mẫu giải thể chính thức theo quy chuẩn luật công ty Canada.
+                        </p>
+                        
+                        <div class="space-y-2 bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Federal: Tự động điền <strong>Form 17 — Articles of Dissolution</strong> theo Mục 210/211 CBCA.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Tỉnh bang: Điền Form tương ứng (Ontario Form 11, BC Dissolution App, Alberta Form 23).</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Tạo văn bản <strong>Special Resolution of Shareholders</strong> và đẩy sang Eversign API.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Tự động nhận file đã ký qua Webhook và lưu an toàn vào <strong>Cloudflare R2 CDN</strong>.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Động cơ: <strong class="text-canSlate-800">pdf-lib + Eversign</strong></span>
+                        <span class="text-canNavy-700 font-semibold">Tự động + Review</span>
+                    </div>
+                </div>
+
+                <!-- SOP 4 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-canNavy-100 text-canNavy-900 font-mono text-xs font-bold">SOP-04</span>
+                            <span class="text-xs font-mono text-purple-600 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">SLA: Trong ngày</span>
+                        </div>
+                        <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                            Nộp Hồ Sơ Lên Cơ Quan Đăng Ký
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-3 leading-relaxed">
+                            Nộp hồ sơ chính thức qua cổng điện tử của cơ quan quản lý doanh nghiệp liên bang hoặc cơ quan đăng ký tỉnh bang.
+                        </p>
+                        
+                        <div class="space-y-2 bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Cổng Liên bang: Đăng nhập Cổng trực tuyến <strong>Corporations Canada Online Filing</strong>.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Cổng Tỉnh bang: Ontario Business Registry (OBR), BC Corporate Online, Alberta CORES Agent.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Thanh toán lệ phí chính phủ bằng thẻ công vụ của FastDissolve.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Ghi nhận <strong>Filing Confirmation Number</strong> vào hệ thống quản lý Case.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Kênh: <strong class="text-canSlate-800">Gov Filing Portals</strong></span>
+                        <span class="text-canNavy-700 font-semibold">Authorized Filing Agent</span>
+                    </div>
+                </div>
+
+                <!-- SOP 5 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-canNavy-100 text-canNavy-900 font-mono text-xs font-bold">SOP-05</span>
+                            <span class="text-xs font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">SLA: &lt; 2 Giờ</span>
+                        </div>
+                        <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                            Tiếp Nhận Kết Quả & Đóng Case
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-3 leading-relaxed">
+                            Tải về Giấy chứng nhận giải thể chính thức, kiểm tra tính chuẩn xác của ngày hiệu lực giải thể (Effective Date of Dissolution).
+                        </p>
+                        
+                        <div class="space-y-2 bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Tải <strong>Certificate of Dissolution</strong> chính thức do Chính phủ cấp về hệ thống.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Đóng gói tài liệu trọn bộ: Certificate + Biên bản giải thể + Hóa đơn + Hướng dẫn CRA.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Chuyển trạng thái <code class="font-mono text-slate-800">ServiceCase: COMPLETED</code> và <code class="font-mono text-slate-800">Order: COMPLETED</code>.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Kích hoạt email bàn giao trang trọng đến khách hàng.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Lưu trữ: <strong class="text-canSlate-800">R2 Attachments</strong></span>
+                        <span class="text-canNavy-700 font-semibold">Filing Specialist</span>
+                    </div>
+                </div>
+
+                <!-- SOP 6 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-canNavy-100 text-canNavy-900 font-mono text-xs font-bold">SOP-06</span>
+                            <span class="text-xs font-mono text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Hậu Cần & Thuế</span>
+                        </div>
+                        <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                            Hướng Dẫn Đóng Thuế CRA (Post-Dissolution)
+                        </h3>
+                        <p class="text-xs text-canSlate-700 mb-3 leading-relaxed">
+                            Cung cấp bộ tài liệu hướng dẫn khách hàng hoặc đại diện khách hàng hoàn tất nghĩa vụ với Cơ quan Thuế Canada (CRA).
+                        </p>
+                        
+                        <div class="space-y-2 bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs mb-4">
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Hướng dẫn nộp <strong>Final Corporate Income Tax Return (T2)</strong> kèm bản sao Certificate.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Thủ tục đóng tài khoản khấu trừ lương <strong>Payroll Deductions (RP)</strong> và nộp T4 cuối cùng.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Thủ tục hủy đăng ký tài khoản thuế <strong>GST/HST (RT)</strong>.</span>
+                            </div>
+                            <div class="flex items-start gap-1.5">
+                                <span class="text-canNavy-900 font-bold">•</span>
+                                <span>Lưu trữ bản ghi hồ sơ trong <strong>ActivityLog</strong> tối thiểu 7 năm theo quy chuẩn CRA.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-canSlate-100 flex items-center justify-between text-[11px] text-canSlate-700">
+                        <span>Bộ phận: <strong class="text-canSlate-800">Tax Support Liaison</strong></span>
+                        <span class="text-canNavy-700 font-semibold">CRA Compliance Desk</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Internal Staff Roles & RBAC Matrix -->
+            <div class="bg-white rounded-2xl border border-canSlate-200 p-6 shadow-sm mt-6">
+                <h3 class="font-heading text-base font-bold text-canNavy-900 mb-4 flex items-center gap-2">
+                    <i data-lucide="shield" class="w-4 h-4 text-canNavy-700"></i>
+                    <span>Phân Quyền Nhân Sự Nội Bộ & Phụ Trách Nghiệp Vụ (Staff Roles & Responsibilities)</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 rounded-xl border border-canSlate-200 bg-canSlate-50">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-canNavy-900 text-sm">ADMIN (Super Administrator)</span>
+                            <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 font-mono font-semibold">Full Access</span>
+                        </div>
+                        <p class="text-canSlate-700 mb-3">Toàn quyền cấu hình hệ thống, quản lý tài chính, hoàn tiền (Refund Stripe), tạo tài khoản Staff, cấu hình SMTP/Resend và Workflow Engine.</p>
+                        <div class="font-mono text-[11px] text-slate-500">Bypass all 53 StaffPermission checks</div>
+                    </div>
+                    <div class="p-4 rounded-xl border border-canSlate-200 bg-canSlate-50">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-canNavy-900 text-sm">FILING SPECIALIST (Pháp Chế)</span>
+                            <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-mono font-semibold">Operations</span>
+                        </div>
+                        <p class="text-canSlate-700 mb-3">Thẩm tra hồ sơ doanh nghiệp, nộp đơn qua cổng chính phủ, tải lên Certificate of Dissolution, xử lý các sub-task trong ServiceCase và quản lý kho tài liệu.</p>
+                        <div class="font-mono text-[11px] text-slate-500">canManageCases, canExportCases, canSelfAssign</div>
+                    </div>
+                    <div class="p-4 rounded-xl border border-canSlate-200 bg-canSlate-50">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-canNavy-900 text-sm">CUSTOMER SUPPORT (CSKH)</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono font-semibold">Support Desk</span>
+                        </div>
+                        <p class="text-canSlate-700 mb-3">Xử lý Tickets, trả lời Webmail, hỗ trợ khách hàng qua Chat/Điện thoại, sử dụng Canned Responses và theo dõi nhắc nhở khách hàng ký số hồ sơ.</p>
+                        <div class="font-mono text-[11px] text-slate-500">canViewTickets, canUseCanned, canAddInternalNotes</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- TAB 3: MA TRẬN PHỐI HỢP (END-TO-END SWIMLANE MATRIX) -->
+        <!-- =================================================================== -->
+        <div id="tab-swimlane-flow" class="tab-pane hidden space-y-6">
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-canSlate-200 gap-3">
+                <div>
+                    <h2 class="font-heading text-xl sm:text-2xl font-bold text-canNavy-900">3. Ma Trận Tương Tác Đồng Thời (Swimlane Interaction Map)</h2>
+                    <p class="text-sm text-canSlate-700">Đối chiếu trực quan song song giữa hành động của Khách hàng ↔ Hệ thống Tự động hóa ↔ Đội ngũ Pháp chế nội bộ.</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-semibold border border-blue-200">
+                    <i data-lucide="git-commit" class="w-4 h-4"></i>
+                    <span>Tương tác đồng bộ thời gian thực</span>
+                </div>
+            </div>
+
+            <!-- Swimlane Step by Step Comparison Cards -->
+            <div class="space-y-4">
+
+                <!-- ROW 1 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-5 hover:border-canNavy-400 transition-all">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-canNavy-900 text-white font-mono text-xs flex items-center justify-center font-bold">1</span>
+                        <h4 class="font-heading text-sm font-bold text-canNavy-900 uppercase tracking-wider">Giai Đoạn Khởi Động: Tiếp Nhận & Khám Phá Nhu Cầu</h4>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-blue-50/60 p-3.5 rounded-xl border border-blue-100">
+                            <span class="font-bold text-blue-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="user" class="w-3.5 h-3.5 text-blue-600"></i> Khách Hàng (Customer)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Truy cập website, nhập tên công ty hoặc BN9, chọn tỉnh bang, hoàn thành 3 câu hỏi sàng lọc điều kiện và cung cấp thông tin liên hệ.</p>
+                        </div>
+                        <div class="bg-purple-50/60 p-3.5 rounded-xl border border-purple-100">
+                            <span class="font-bold text-purple-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-600"></i> Hệ Thống (Automation Engine)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Tạo bản ghi <code class="font-mono text-purple-700">Lead</code>, kiểm tra định dạng Corp Number/BN, tính toán tự động phí theo tỉnh bang và kích hoạt luồng nhắc nhở nếu thoát ngang.</p>
+                        </div>
+                        <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-100">
+                            <span class="font-bold text-amber-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="briefcase" class="w-3.5 h-3.5 text-amber-600"></i> Pháp Chế / CSKH (Back-Office)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Theo dõi luồng Leads mới trên Dashboard, hỗ trợ giải đáp thắc mắc trực tuyến qua Webmail/LiveChat nếu khách có câu hỏi đặc thù.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 2 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-5 hover:border-canNavy-400 transition-all">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-canNavy-900 text-white font-mono text-xs flex items-center justify-center font-bold">2</span>
+                        <h4 class="font-heading text-sm font-bold text-canNavy-900 uppercase tracking-wider">Giai Đoạn Giao Dịch: Thanh Toán & Đặt Đơn</h4>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-blue-50/60 p-3.5 rounded-xl border border-blue-100">
+                            <span class="font-bold text-blue-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="user" class="w-3.5 h-3.5 text-blue-600"></i> Khách Hàng (Customer)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Xem hóa đơn dự toán, chọn phương thức thanh toán an toàn qua Stripe (Credit card / Apple Pay), nhận hóa đơn điện tử ngay trên màn hình.</p>
+                        </div>
+                        <div class="bg-purple-50/60 p-3.5 rounded-xl border border-purple-100">
+                            <span class="font-bold text-purple-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-600"></i> Hệ Thống (Automation Engine)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Stripe Webhook xác nhận ➔ Claim-then-rollback an toàn ➔ Chuyển Lead thành <code class="font-mono text-purple-700">Order</code> (PAID) ➔ Sinh <code class="font-mono text-purple-700">ServiceCase</code> và gửi Welcome Email tức thì.</p>
+                        </div>
+                        <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-100">
+                            <span class="font-bold text-amber-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="briefcase" class="w-3.5 h-3.5 text-amber-600"></i> Pháp Chế / CSKH (Back-Office)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Nhận thông báo đơn hàng mới qua Telegram/Dashboard, hệ thống tự động gán chuyên viên pháp chế phụ trách (Assignee).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 3 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-5 hover:border-canNavy-400 transition-all">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-canNavy-900 text-white font-mono text-xs flex items-center justify-center font-bold">3</span>
+                        <h4 class="font-heading text-sm font-bold text-canNavy-900 uppercase tracking-wider">Giai Đoạn Pháp Lý: Soạn Hồ Sơ & Ký Số</h4>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-blue-50/60 p-3.5 rounded-xl border border-blue-100">
+                            <span class="font-bold text-blue-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="user" class="w-3.5 h-3.5 text-blue-600"></i> Khách Hàng (Customer)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Nhận thông báo ký điện tử qua Email/SMS, mở liên kết trên điện thoại, đọc lướt qua Nghị quyết giải thể và ký tên bằng ngón tay trong 60 giây.</p>
+                        </div>
+                        <div class="bg-purple-50/60 p-3.5 rounded-xl border border-purple-100">
+                            <span class="font-bold text-purple-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-600"></i> Hệ Thống (Automation Engine)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Sinh form PDF chuẩn (CBCA Form 17 / Provincial Articles), gửi payload sang Eversign API, webhook lắng nghe chữ ký hoàn tất và lưu file vào R2.</p>
+                        </div>
+                        <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-100">
+                            <span class="font-bold text-amber-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="briefcase" class="w-3.5 h-3.5 text-amber-600"></i> Pháp Chế / CSKH (Back-Office)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Thẩm tra lần cuối văn bản đã ký đủ tỷ lệ biểu quyết cổ đông, kiểm tra số hiệu doanh nghiệp trước khi chuyển sang bước nộp nhà nước.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 4 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-5 hover:border-canNavy-400 transition-all">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-6 h-6 rounded-full bg-canNavy-900 text-white font-mono text-xs flex items-center justify-center font-bold">4</span>
+                        <h4 class="font-heading text-sm font-bold text-canNavy-900 uppercase tracking-wider">Giai Đoạn Nộp Nhà Nước: Phê Duyệt & Bàn Giao</h4>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-blue-50/60 p-3.5 rounded-xl border border-blue-100">
+                            <span class="font-bold text-blue-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="user" class="w-3.5 h-3.5 text-blue-600"></i> Khách Hàng (Customer)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Theo dõi thanh tiến trình thời gian thực, nhận thông báo "Đã phê duyệt" kèm Giấy Chứng nhận Giải thể chính thức và hướng dẫn đóng thuế CRA.</p>
+                        </div>
+                        <div class="bg-purple-50/60 p-3.5 rounded-xl border border-purple-100">
+                            <span class="font-bold text-purple-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-600"></i> Hệ Thống (Automation Engine)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Chuyển trạng thái đơn sang <code class="font-mono text-purple-700">COMPLETED</code>, tạo kho lưu trữ tài liệu vĩnh viễn (CDN link), gửi email đánh giá hài lòng (NPS review).</p>
+                        </div>
+                        <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-100">
+                            <span class="font-bold text-amber-900 block mb-1.5 flex items-center gap-1.5">
+                                <i data-lucide="briefcase" class="w-3.5 h-3.5 text-amber-600"></i> Pháp Chế / CSKH (Back-Office)
+                            </span>
+                            <p class="text-canSlate-700 leading-relaxed">Nộp hồ sơ trực tiếp qua Corporations Canada Online / OBR Portal, nhận Certificate of Dissolution, tải lên R2 và đóng Case.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- TAB 4: BIỂU PHÍ & THỦ TỤC 13 TỈNH BANG (JURISDICTIONS MATRIX) -->
+        <!-- =================================================================== -->
+        <div id="tab-jurisdictions-flow" class="tab-pane hidden space-y-6">
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-canSlate-200 gap-3">
+                <div>
+                    <h2 class="font-heading text-xl sm:text-2xl font-bold text-canNavy-900">4. Ma Trận Pháp Lý & Lệ Phí Giải Thể 13 Tỉnh Bang Canada</h2>
+                    <p class="text-sm text-canSlate-700">Bảng tra cứu quy chuẩn luật pháp định, tên biểu mẫu và lệ phí chính phủ niêm yết chính xác bằng đồng Đô la Canada (CAD).</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-canRed-50 text-canRed-700 border border-canRed-200 rounded-lg text-xs font-semibold">
+                    <span class="font-mono font-bold">$249 CAD</span> + Lệ phí CP từng tỉnh bang
+                </div>
+            </div>
+
+            <!-- Jurisdictions Table -->
+            <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead>
+                            <tr class="bg-canNavy-900 text-white font-semibold">
+                                <th class="p-3.5">Khu Vực Tài Phán (Jurisdiction)</th>
+                                <th class="p-3.5">Luật Doanh Nghiệp Áp Dụng</th>
+                                <th class="p-3.5">Biểu Mẫu Giải Thể Chính Thức</th>
+                                <th class="p-3.5">Lệ Phí Nhà Nước (Gov Fee)</th>
+                                <th class="p-3.5">Thời Gian Phê Duyệt</th>
+                                <th class="p-3.5">Cơ Quan Cấp Phép</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-canSlate-200 text-canSlate-700">
+                            
+                            <!-- FEDERAL -->
+                            <tr class="hover:bg-canRed-50/30 bg-canNavy-50/40 font-medium">
+                                <td class="p-3.5 font-bold text-canNavy-900 flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-canRed-600"></span>
+                                    <span>Federal (Liên Bang Toàn Canada)</span>
+                                </td>
+                                <td class="p-3.5">Canada Business Corporations Act (CBCA)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800 font-semibold">Form 17 — Articles of Dissolution</td>
+                                <td class="p-3.5 font-bold text-emerald-700 font-mono text-sm">$0 CAD (Miễn phí)</td>
+                                <td class="p-3.5 font-mono">1 – 2 Ngày</td>
+                                <td class="p-3.5 text-canNavy-900">Corporations Canada (ISED)</td>
+                            </tr>
+
+                            <!-- ONTARIO -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">Ontario (ON)</td>
+                                <td class="p-3.5">Ontario Business Corporations Act (OBCA)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Articles of Dissolution (Form 11 / OBR Online)</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">$25 CAD</td>
+                                <td class="p-3.5 font-mono">1 – 3 Ngày</td>
+                                <td class="p-3.5">Ontario Business Registry (OBR)</td>
+                            </tr>
+
+                            <!-- BRITISH COLUMBIA -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">British Columbia (BC)</td>
+                                <td class="p-3.5">BC Business Corporations Act (BCBCA)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Dissolution Application (Corporate Online)</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">$20 CAD</td>
+                                <td class="p-3.5 font-mono">1 – 2 Ngày</td>
+                                <td class="p-3.5">BC Registries and Online Services</td>
+                            </tr>
+
+                            <!-- ALBERTA -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">Alberta (AB)</td>
+                                <td class="p-3.5">Alberta Business Corporations Act (ABCA)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Form 23 — Articles of Dissolution</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">~$30 – $50 CAD (Registry Agent)</td>
+                                <td class="p-3.5 font-mono">1 – 2 Ngày</td>
+                                <td class="p-3.5">Alberta Corporate Registry (CORES)</td>
+                            </tr>
+
+                            <!-- QUEBEC -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">Quebec (QC)</td>
+                                <td class="p-3.5">Business Corporations Act (Loi sur les sociétés par actions)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Déclaration de radiation / Statuts de dissolution</td>
+                                <td class="p-3.5 font-bold text-emerald-700 font-mono text-sm">$0 CAD</td>
+                                <td class="p-3.5 font-mono">3 – 5 Ngày</td>
+                                <td class="p-3.5">Registraire des entreprises (REQ)</td>
+                            </tr>
+
+                            <!-- SASKATCHEWAN -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">Saskatchewan (SK)</td>
+                                <td class="p-3.5">The Business Corporations Act, 2021</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Articles of Dissolution (ISC Online)</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">$50 CAD</td>
+                                <td class="p-3.5 font-mono">2 – 3 Ngày</td>
+                                <td class="p-3.5">Information Services Corporation (ISC)</td>
+                            </tr>
+
+                            <!-- MANITOBA -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">Manitoba (MB)</td>
+                                <td class="p-3.5">The Corporations Act (Manitoba)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Articles of Dissolution (Form 17)</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">$50 CAD</td>
+                                <td class="p-3.5 font-mono">3 – 5 Ngày</td>
+                                <td class="p-3.5">Companies Office Manitoba</td>
+                            </tr>
+
+                            <!-- NOVA SCOTIA -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">Nova Scotia (NS)</td>
+                                <td class="p-3.5">Companies Act (Nova Scotia)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Application for Surrender of Certificate of Incorporation</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">$137.05 CAD</td>
+                                <td class="p-3.5 font-mono">5 – 7 Ngày</td>
+                                <td class="p-3.5">Nova Scotia Registry of Joint Stock Companies</td>
+                            </tr>
+
+                            <!-- NEW BRUNSWICK -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">New Brunswick (NB)</td>
+                                <td class="p-3.5">Business Corporations Act (New Brunswick)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Articles of Dissolution (Form 17)</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">$100 CAD</td>
+                                <td class="p-3.5 font-mono">3 – 5 Ngày</td>
+                                <td class="p-3.5">Service New Brunswick (Corporate Registry)</td>
+                            </tr>
+
+                            <!-- NEWFOUNDLAND & LABRADOR -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">Newfoundland & Labrador (NL)</td>
+                                <td class="p-3.5">Corporations Act (NL)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Articles of Dissolution (Form 21)</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">$100 CAD</td>
+                                <td class="p-3.5 font-mono">3 – 5 Ngày</td>
+                                <td class="p-3.5">Commercial Registrations Division (NL)</td>
+                            </tr>
+
+                            <!-- PRINCE EDWARD ISLAND -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">Prince Edward Island (PE)</td>
+                                <td class="p-3.5">Business Corporations Act (PEI)</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Articles of Dissolution</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">$250 CAD</td>
+                                <td class="p-3.5 font-mono">4 – 6 Ngày</td>
+                                <td class="p-3.5">Consumer, Corporate and Insurance Division (PEI)</td>
+                            </tr>
+
+                            <!-- TERRITORIES (YT, NT, NU) -->
+                            <tr class="hover:bg-canSlate-50">
+                                <td class="p-3.5 font-bold text-canNavy-900">3 Territories (YT, NT, NU)</td>
+                                <td class="p-3.5">Territorial Business Corporations Acts</td>
+                                <td class="p-3.5 font-mono text-canNavy-800">Articles of Dissolution (Yukon / NWT / Nunavut)</td>
+                                <td class="p-3.5 font-bold text-canNavy-900 font-mono text-sm">~$50 – $100 CAD</td>
+                                <td class="p-3.5 font-mono">3 – 7 Ngày</td>
+                                <td class="p-3.5">Corporate Registries of Yukon / NWT / Nunavut</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tax Closure Guidelines Card (CRA Specifics) -->
+            <div class="bg-canSlate-900 text-white rounded-2xl p-6 border border-canSlate-800 shadow-md">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-canRed-500"></span>
+                    <h3 class="font-heading text-base font-bold text-white uppercase tracking-wide">Quy Chuẩn Đóng Mã Số Thuế Với Cơ Quan Thuế Canada (CRA BN9 Accounts)</h3>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                    Giải thể tại cơ quan đăng ký doanh nghiệp (Legal Dissolution) và đóng mã số thuế với Cơ quan Thuế Canada (CRA Tax Closure) là 2 bước pháp lý độc lập. FastDissolve cung cấp hướng dẫn chuẩn giúp khách hàng không bị phạt chậm nộp thuế:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                    <div class="bg-canSlate-800/80 p-3.5 rounded-xl border border-canSlate-700">
+                        <span class="font-mono text-emerald-400 font-bold block mb-1">1. RC — Corporate Income Tax</span>
+                        <p class="text-slate-300">Nộp tờ khai thuế T2 cuối cùng (Final Return) trong vòng 6 tháng kể từ ngày giải thể, đánh dấu ô <em>"Is this the final return up to dissolution?"</em> và đính kèm bản sao Certificate of Dissolution.</p>
+                    </div>
+                    <div class="bg-canSlate-800/80 p-3.5 rounded-xl border border-canSlate-700">
+                        <span class="font-mono text-blue-400 font-bold block mb-1">2. RP — Payroll Deductions</span>
+                        <p class="text-slate-300">Nộp đầy đủ các khoản khấu trừ tiền lương, nộp tờ khai T4/T4A Summary & Slips trong vòng 30 ngày kể từ ngày chấm dứt kinh doanh trước khi yêu cầu đóng tài khoản RP.</p>
+                    </div>
+                    <div class="bg-canSlate-800/80 p-3.5 rounded-xl border border-canSlate-700">
+                        <span class="font-mono text-purple-400 font-bold block mb-1">3. RT — GST/HST Account</span>
+                        <p class="text-slate-300">Nộp tờ khai GST/HST cuối cùng và thanh toán toàn bộ số thuế còn nợ, sau đó gửi biểu mẫu RC145 (Request to Close Business Number Program Accounts) để đóng tài khoản RT.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- TAB 5: XỬ LÝ NGOẠI LỆ & SLA (EXCEPTIONS & SLA PLAYBOOK) -->
+        <!-- =================================================================== -->
+        <div id="tab-exceptions-playbook" class="tab-pane hidden space-y-6">
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-canSlate-200 gap-3">
+                <div>
+                    <h2 class="font-heading text-xl sm:text-2xl font-bold text-canNavy-900">5. Kịch Bản Xử Lý Ngoại Lệ & SLA Phản Hồi (Exception Handling & Helpdesk)</h2>
+                    <p class="text-sm text-canSlate-700">Quy chuẩn ứng phó các tình huống rủi ro pháp lý, tranh chấp nội bộ, chậm trễ hồ sơ và chỉ số cam kết chất lượng dịch vụ (SLA).</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 text-amber-800 border border-amber-200 rounded-lg text-xs font-semibold">
+                    <i data-lucide="clock" class="w-4 h-4"></i>
+                    <span>SLA First Response: &lt; 2 Giờ làm việc</span>
+                </div>
+            </div>
+
+            <!-- Exception Playbook Accordion/Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- EXCEPTION 1 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-5 hover:border-amber-400 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">Tình huống 01</span>
+                        <span class="text-xs text-canSlate-700 font-medium">Tỷ lệ gặp: ~12%</span>
+                    </div>
+                    <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                        Công Ty Đang Bị Đình Chỉ Hoạt Động (In Default / Struck Off do thiếu Báo Cáo Thường Niên)
+                    </h3>
+                    <p class="text-xs text-canSlate-700 leading-relaxed mb-3">
+                        Doanh nghiệp không nộp Annual Return (Form 22 CBCA) trong 2 năm liên tiếp dẫn đến việc bị Cơ quan quản lý đưa vào trạng thái "In Default" hoặc giải thể hành chính (Administrative Dissolution).
+                    </p>
+                    <div class="bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs space-y-1.5">
+                        <strong class="text-canNavy-900 block mb-1">Quy trình xử lý chuẩn của Chuyên viên:</strong>
+                        <p>1. Nếu chỉ ở trạng thái <em>In Default</em> nhưng chưa bị xóa sổ: Nộp bổ sung các kỳ Annual Return còn thiếu qua cổng trực tuyến (Phí liên bang $12 CAD/kỳ).</p>
+                        <p>2. Nếu đã bị <em>Dissolved administratively</em>: Tư vấn thủ tục <strong>Revival (Khôi phục tư cách pháp nhân)</strong> trước khi tiến hành giải thể tự nguyện nếu cần xử lý dứt điểm tài sản tồn đọng.</p>
+                    </div>
+                </div>
+
+                <!-- EXCEPTION 2 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-5 hover:border-amber-400 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800">Tình huống 02</span>
+                        <span class="text-xs text-canSlate-700 font-medium">Tỷ lệ gặp: ~8%</span>
+                    </div>
+                    <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                        Không Thể Liên Lạc Được Với Một Số Cổ Đông Để Ký Nghị Quyết
+                    </h3>
+                    <p class="text-xs text-canSlate-700 leading-relaxed mb-3">
+                        Doanh nghiệp có nhiều cổ đông sáng lập nhưng một số người đã chuyển chỗ ở, mất liên lạc hoặc không phản hồi email ký số Eversign.
+                    </p>
+                    <div class="bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs space-y-1.5">
+                        <strong class="text-canNavy-900 block mb-1">Quy trình xử lý chuẩn của Chuyên viên:</strong>
+                        <p>1. Kiểm tra tỷ lệ sở hữu cổ phần: Theo luật CBCA Mục 211, giải thể chỉ yêu cầu <strong>Special Resolution</strong> thông qua bởi tối thiểu <strong>66.7% (hai phần ba)</strong> số phiếu biểu quyết.</p>
+                        <p>2. Hướng dẫn Giám đốc gửi thông báo họp cổ đông chính thức theo địa chỉ lưu trong sổ cổ đông (Minute Book), sau đó lập biên bản thông qua giải thể theo đa số hợp pháp.</p>
+                    </div>
+                </div>
+
+                <!-- EXCEPTION 3 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-5 hover:border-amber-400 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-red-100 text-red-800">Tình huống 03</span>
+                        <span class="text-xs text-canSlate-700 font-medium">Tỷ lệ gặp: ~5%</span>
+                    </div>
+                    <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                        Công Ty Còn Nợ Thuế Chưa Thanh Toán Với Cơ Quan Thuế Canada (CRA Tax Debt)
+                    </h3>
+                    <p class="text-xs text-canSlate-700 leading-relaxed mb-3">
+                        Khách hàng đặt dịch vụ giải thể nhưng khi tra soát phát hiện công ty đang bị CRA truy thu thuế thu nhập hoặc nợ tiền thuế GST/HST chưa nộp.
+                    </p>
+                    <div class="bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs space-y-1.5">
+                        <strong class="text-canNavy-900 block mb-1">Quy trình xử lý chuẩn của Chuyên viên:</strong>
+                        <p>1. Cảnh báo khách hàng: Giải thể công ty <em>không xóa bỏ</em> trách nhiệm cá nhân của Giám đốc đối với các khoản nợ thuế khấu trừ lương (Director’s Liability under CRA s. 227.1).</p>
+                        <p>2. Chuyển Case sang trạng thái <code class="font-mono text-amber-700">WAITING_CLIENT</code>, cung cấp hướng dẫn làm việc với kế toán CPA để thanh toán dứt điểm nghĩa vụ nợ trước khi nộp Form 17.</p>
+                    </div>
+                </div>
+
+                <!-- EXCEPTION 4 -->
+                <div class="bg-white rounded-2xl border border-canSlate-200 shadow-sm p-5 hover:border-amber-400 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">Tình huống 04</span>
+                        <span class="text-xs text-canSlate-700 font-medium">Tỷ lệ gặp: ~3%</span>
+                    </div>
+                    <h3 class="font-heading text-base font-bold text-canNavy-900 mb-2">
+                        Khách Hàng Yêu Cầu Hủy Hồ Sơ & Hoàn Tiền (Refund Request)
+                    </h3>
+                    <p class="text-xs text-canSlate-700 leading-relaxed mb-3">
+                        Khách hàng thay đổi ý định sau khi đã thanh toán hoặc quyết định giữ lại công ty để tiếp tục kinh doanh trong tương lai.
+                    </p>
+                    <div class="bg-canSlate-50 p-3 rounded-xl border border-canSlate-200 text-xs space-y-1.5">
+                        <strong class="text-canNavy-900 block mb-1">Chính sách hoàn tiền theo tầng (Refund Policy):</strong>
+                        <p>• <strong>Trước khi nộp lên cơ quan nhà nước</strong>: Hoàn trả 100% lệ phí chính phủ + 80% phí dịch vụ FastDissolve (khấu trừ $50 CAD phí xử lý hồ sơ).</p>
+                        <p>• <strong>Sau khi đã nộp hồ sơ vào cổng Sở</strong>: Không thể hoàn tiền lệ phí nhà nước; đóng Case theo yêu cầu rút đơn (Withdrawal).</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Helpdesk SLA Benchmarks Table -->
+            <div class="bg-white rounded-2xl border border-canSlate-200 p-6 shadow-sm mt-6">
+                <h3 class="font-heading text-base font-bold text-canNavy-900 mb-4 flex items-center gap-2">
+                    <i data-lucide="timer" class="w-4 h-4 text-emerald-600"></i>
+                    <span>Chỉ Số Cam Kết Chất Lượng Vận Hành (Support & Processing SLA Targets)</span>
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                    <div class="bg-canSlate-50 p-4 rounded-xl border border-canSlate-200">
+                        <span class="text-slate-500 block mb-1">Phản Hồi Yêu Cầu CSKH</span>
+                        <span class="text-xl font-bold text-canNavy-900 font-mono block mb-1">&lt; 2 Giờ</span>
+                        <p class="text-[11px] text-canSlate-600">Trong giờ làm việc (9:00 AM - 6:00 PM EST)</p>
+                    </div>
+                    <div class="bg-canSlate-50 p-4 rounded-xl border border-canSlate-200">
+                        <span class="text-slate-500 block mb-1">Thẩm Định & Soạn Thảo</span>
+                        <span class="text-xl font-bold text-canNavy-900 font-mono block mb-1">&lt; 4 Giờ</span>
+                        <p class="text-[11px] text-canSlate-600">Kể từ khi nhận đầy đủ thông tin thanh toán</p>
+                    </div>
+                    <div class="bg-canSlate-50 p-4 rounded-xl border border-canSlate-200">
+                        <span class="text-slate-500 block mb-1">Nộp Lên Sở Đăng Ký</span>
+                        <span class="text-xl font-bold text-canNavy-900 font-mono block mb-1">&lt; 24 Giờ</span>
+                        <p class="text-[11px] text-canSlate-600">Sau khi nhận đầy đủ chữ ký điện tử hợp lệ</p>
+                    </div>
+                    <div class="bg-canSlate-50 p-4 rounded-xl border border-canSlate-200">
+                        <span class="text-slate-500 block mb-1">Bàn Giao Kết Quả</span>
+                        <span class="text-xl font-bold text-emerald-600 font-mono block mb-1">Tức Thì</span>
+                        <p class="text-[11px] text-canSlate-600">Tự động phát hành ngay khi có Certificate</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-canNavy-900 text-slate-400 py-10 mt-12 border-t border-canNavy-800 no-print text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-canNavy-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-canRed-600 flex items-center justify-center text-white font-bold">
+                        🍁
+                    </div>
+                    <div>
+                        <span class="font-heading font-bold text-white text-sm">FastDissolve Canada Inc.</span>
+                        <p class="text-[11px] text-slate-500">Corporate Dissolution & Regulatory Filing Infrastructure</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 text-slate-400">
+                    <span class="hover:text-white cursor-pointer transition-colors" onclick="switchTab('customer-flow')">Quy trình Khách hàng</span>
+                    <span class="hover:text-white cursor-pointer transition-colors" onclick="switchTab('ops-playbook')">Quy trình Vận hành</span>
+                    <span class="hover:text-white cursor-pointer transition-colors" onclick="switchTab('jurisdictions-flow')">13 Tỉnh bang</span>
+                    <span class="hover:text-white cursor-pointer transition-colors" onclick="window.print()">In tài liệu (PDF)</span>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+                <p>© 2026 FastDissolve.ca — All rights reserved. Tài liệu lưu hành nội bộ và hướng dẫn vận hành chuẩn (SOP).</p>
+                <p>Tuân thủ chuẩn bảo vệ dữ liệu cá nhân Canada (PIPEDA compliant) & mã hóa SSL/TLS 256-bit.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE TAB CONTROLLER SCRIPT -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        function switchTab(tabId) {
+            // Hide all tab panes
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(pane => {
+                pane.classList.add('hidden');
+            });
+
+            // Remove active classes from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-canRed-600', 'text-canRed-600', 'bg-canRed-50/50', 'active-tab');
+                btn.classList.add('border-transparent', 'text-canSlate-600');
+            });
+
+            // Show selected pane
+            const activePane = document.getElementById('tab-' + tabId);
+            if (activePane) {
+                activePane.classList.remove('hidden');
+            }
+
+            // Highlight selected button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'text-canSlate-600');
+                activeBtn.classList.add('border-canRed-600', 'text-canRed-600', 'bg-canRed-50/50', 'active-tab');
+            }
+
+            // Re-run Lucide icons in case dynamic elements rendered
+            lucide.createIcons();
+            
+            // Scroll smoothly to top of content
+            window.scrollTo({
+                top: 140,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
